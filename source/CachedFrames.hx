@@ -116,8 +116,7 @@ class CachedFrames
             FlxDestroyUtil.destroy(cachedGraphics[removeMe]);
             cachedGraphics.remove(removeMe);
             FlxDestroyUtil.putArray(gettedRects);
-            gettedRects.splice(0, gettedRects.length);
-                
+            gettedRects.splice(0, gettedRects.length);  
         }
     }
 

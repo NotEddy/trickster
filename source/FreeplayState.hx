@@ -186,7 +186,7 @@ class FreeplayState extends MusicBeatState
 		if (FlxG.keys.justPressed.ESCAPE && !selectedSmth)
 		{
 			selectedSmth = true;
-			MainMenuState.curDifficulty = diff;
+			//MainMenuState.curDifficulty = diff;
 			FlxG.switchState(new MainMenuState());
 		}
 

@@ -20,14 +20,13 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<FlxText>;
 
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	var menuItems:Array<String> = ['ゲーム再開', '再び起動', 'メニューに戻る'];
 	var curSelected:Int = 0;
 
 	var gapSizeY:Float = 120;
 	var gapSizeX:Float = 20;
 
-	//var pauseMusic:FlxSound;
-
+	// var pauseMusic:FlxSound;
 	var daSong:SwagSong;
 
 	// public function new(x:Float, y:Float)
@@ -37,16 +36,15 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function create()
 	{
-		
 		#if debug
 		menuItems.push("Skip Song");
 		#end
 
-		//pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
-		//pauseMusic.volume = 0;
-		//pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
+		// pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
+		// pauseMusic.volume = 0;
+		// pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
-		//FlxG.sound.list.add(pauseMusic);
+		// FlxG.sound.list.add(pauseMusic);
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0;
@@ -54,43 +52,41 @@ class PauseSubState extends MusicBeatSubstate
 		add(bg);
 
 		/*var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
-		levelInfo.text += daSong.song;
-		levelInfo.scrollFactor.set();
-		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
-		levelInfo.updateHitbox();
-		add(levelInfo);*/
+			levelInfo.text += daSong.song;
+			levelInfo.scrollFactor.set();
+			levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
+			levelInfo.updateHitbox();
+			add(levelInfo); */
 
-		//var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
+		// var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
 		/*levelDifficulty.text += CoolUtil.difficultyString();
-		levelDifficulty.scrollFactor.set();
-		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
-		levelDifficulty.updateHitbox();
-		add(levelDifficulty);*/
-
+			levelDifficulty.scrollFactor.set();
+			levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
+			levelDifficulty.updateHitbox();
+			add(levelDifficulty); */
 		/*levelDifficulty.alpha = 0;
-		levelInfo.alpha = 0;
+			levelInfo.alpha = 0;
 
-		levelInfo.x = FlxG.width - (levelInfo.width + 20);
-		levelDifficulty.x = FlxG.width - (levelDifficulty.width + 20);*/
+			levelInfo.x = FlxG.width - (levelInfo.width + 20);
+			levelDifficulty.x = FlxG.width - (levelDifficulty.width + 20); */
 
 		bg.alpha = 0.5;
 		/*FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
-		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});*/
+			FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5}); */
 
 		grpMenuShit = new FlxTypedGroup<FlxText>();
 		add(grpMenuShit);
 
 		for (i in 0...menuItems.length)
-			{
-				// var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
-				// songText.isMenuItem = true;
-				var songText:FlxText = new FlxText(gapSizeX * i + 100, (gapSizeY * i) + FlxG.height / 2, 0, menuItems[i], 80);
-				songText.setFormat("assets/fonts/yuseimagic.ttf", songText.size, FlxColor.WHITE, LEFT, SHADOW, FlxColor.BLACK);
-				songText.borderSize = 12;
-				songText.borderQuality = 1;
-				grpMenuShit.add(songText);
-			}
-	
+		{
+			// var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
+			// songText.isMenuItem = true;
+			var songText:FlxText = new FlxText(gapSizeX * i + 100, (gapSizeY * i) + FlxG.height / 2, 0, menuItems[i], 80);
+			songText.setFormat("assets/fonts/yuseimagic.ttf", songText.size, FlxColor.WHITE, LEFT, SHADOW, FlxColor.BLACK);
+			songText.borderSize = 12;
+			songText.borderQuality = 1;
+			grpMenuShit.add(songText);
+		}
 
 		changeSelection();
 
@@ -127,24 +123,24 @@ class PauseSubState extends MusicBeatSubstate
 
 			switch (daSelected)
 			{
-				case "Resume":
+				case "ゲーム再開":
 					close();
-				case "Restart Song":
-					//FlxG.resetState();
-					//clearCache();
-					//CachedFrames.cachedInstance.clear();
+				case "再び起動":
+					// FlxG.resetState();
+					// clearCache();
+					// CachedFrames.cachedInstance.clear();
 					LoadingState.loadAndSwitchState(new PlayState());
-					//daSong = null;
-				case "Exit to menu":
-					//PlayState.loadRep = false;
-					//MainMenuState.reRoll = true;
-					//clearCache();
-					//daSong = null;
-					//CachedFrames.cachedInstance.clear();
+				// daSong = null;
+				case "メニューに戻る":
+					// PlayState.loadRep = false;
+					// MainMenuState.reRoll = true;
+					// clearCache();
+					// daSong = null;
+					// CachedFrames.cachedInstance.clear();
 					FlxG.switchState(new MainMenuState());
 				case "Skip Song":
 					close();
-					//PlayState.staticVar.endSong();
+					// PlayState.staticVar.endSong();
 			}
 		}
 
@@ -186,7 +182,6 @@ class PauseSubState extends MusicBeatSubstate
 	// 	}
 	// 	menuItems = null;
 	// }
-
 	// override function destroy()
 	// {
 	// 	for (i in members)
@@ -207,12 +202,11 @@ class PauseSubState extends MusicBeatSubstate
 	// 	grpMenuShit = null;
 	// 	menuItems = null;
 	// 	//pauseMusic = null;
-
 	// 	super.destroy();
 	// 	//Main.clearMemoryHopefully();
 	// }
 
-function changeSelection(change:Int = 0):Void
+	function changeSelection(change:Int = 0):Void
 	{
 		curSelected += change;
 

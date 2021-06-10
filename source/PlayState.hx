@@ -2400,13 +2400,14 @@ class PlayState extends MusicBeatState
 
 			if (storyPlaylist.length <= 0)
 			{
-				MainMenuState.reRoll = true;
+				//MainMenuState.reRoll = true;
 
-				#if cpp
-				LoadingState.loadAndSwitchState(new VideoState("assets/videos/TricksterMan.webm", new MainMenuState()));
-				#else
+				// #if cpp
+				// LoadingState.loadAndSwitchState(new VideoState("assets/videos/TricksterMan.webm", new MainMenuState()));
+				// #else
+				// LoadingState.loadAndSwitchState(new MainMenuState());
+				// #end
 				LoadingState.loadAndSwitchState(new MainMenuState());
-				#end
 
 				if (storyDifficulty == 2)
 					FlxG.save.data.beatenHard = true;
@@ -2444,26 +2445,28 @@ class PlayState extends MusicBeatState
 
 				PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
 				FlxG.sound.music.stop();
-				#if cpp
-				switch (song.toLowerCase())
-				{
-					case 'improbable-outset':
-						LoadingState.loadAndSwitchState(new VideoState("assets/videos/HankFuckingShootsTricky.webm", new PlayState()));
-					case 'madness':
-						LoadingState.loadAndSwitchState(new VideoState("assets/videos/HELLCLOWN_ENGADGED.webm", new PlayState()));
-					default:
-						LoadingState.loadAndSwitchState(new PlayState());
-				}
-				#else
+				// #if cpp
+				// switch (song.toLowerCase())
+				// {
+				// 	case 'improbable-outset':
+				// 		LoadingState.loadAndSwitchState(new VideoState("assets/videos/HankFuckingShootsTricky.webm", new PlayState()));
+				// 	case 'madness':
+				// 		LoadingState.loadAndSwitchState(new VideoState("assets/videos/HELLCLOWN_ENGADGED.webm", new PlayState()));
+				// 	default:
+				// 		LoadingState.loadAndSwitchState(new PlayState());
+				// }
+				// #else
+				// LoadingState.loadAndSwitchState(new PlayState());
+				// #end
 				LoadingState.loadAndSwitchState(new PlayState());
-				#end
+				
 			}
 		}
 		else
 		{
 			if (song.toLowerCase() == "expurgation")
 				FlxG.save.data.beatEx = true;
-			MainMenuState.reRoll = true;
+			//MainMenuState.reRoll = true;
 			FlxG.switchState(new MainMenuState());
 		}
 	}

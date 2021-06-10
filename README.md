@@ -27,3 +27,8 @@ or what ever platform, be it linux or mac or smth lol!
 
 
 btw special thanks to [GWebDev](https://github.com/GrowtopiaFli) for obviously video support, chad man.
+
+#SPECIAL BUILD INSTRUCTIONS FOR 32-BIT WINDOWS:
+```
+lime test windows -32 -D HXCPP_GC_BIG_BLOCKS -D HXCPP_GC_MOVING
+```
