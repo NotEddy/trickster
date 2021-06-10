@@ -33,7 +33,7 @@ class OptionsMenu extends MusicBeatState
 			#if desktop
 			new AccuracyOption("Display accuracy information."),
 			new NPSDisplayOption("Shows your current Notes Per Second."),
-			new SongPositionOption("Show the songs current position (as a bar)"),
+			//new SongPositionOption("Show the songs current position (as a bar)"),
 			new DownscrollOption("Change the layout of the strumline.")
 			#else
 			new DistractionsAndEffectsOption("Toggle stage distractions that can hinder your gameplay.")

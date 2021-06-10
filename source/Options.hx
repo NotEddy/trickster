@@ -133,7 +133,7 @@ class GhostTapOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return FlxG.save.data.ghost ? "ボタン連打できる" : "ボタン連打できない";
+		return FlxG.save.data.ghost ? "アロー無しでボタン押すとミスしない" : "アロー無しでボタン押すとミスする";
 	}
 }
 
