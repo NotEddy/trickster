@@ -195,6 +195,7 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(camHUD);
 
 		FlxCamera.defaultCameras = [camGame];
+		//FlxG.cameras.setDefaultDrawTarget(camGame, true);
 
 		staticVar = this;
 
@@ -611,7 +612,7 @@ class PlayState extends MusicBeatState
 		add(kadeEngineWatermark);*/
 
 		scoreTxt = new FlxText(0,0 , 0, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		scoreTxt.setFormat("PixelMplus12 Regular", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.screenCenter();
 		scoreTxt.x -= 200;
@@ -621,7 +622,7 @@ class PlayState extends MusicBeatState
 		add(scoreTxt);
 
 		replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "REPLAY", 20);
-		replayTxt.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		replayTxt.setFormat("PixelMplus12 Regular", 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		replayTxt.scrollFactor.set();
 		if (loadRep)
 			{
@@ -1324,7 +1325,7 @@ class PlayState extends MusicBeatState
 									if (!playonce)
 									{
 										resetSpookyText = false;
-										createSpookyText(cutsceneText[0], 260, FlxG.height * 0.9);
+										createSpookyText(cutsceneText[0], 260, FlxG.height * 0.9, 64);
 										playonce = true;
 									}
 									cloth.play();
@@ -2223,14 +2224,14 @@ class PlayState extends MusicBeatState
 		*/
 	}
 
-	function createSpookyText(text:String, x:Float = -1111111111111, y:Float = -1111111111111):Void
+	function createSpookyText(text:String, x:Float = -1111111111111, y:Float = -1111111111111, fontSize:Int = 128):Void
 	{
 		spookySteps = curStep;
 		spookyRendered = true;
 		tstatic.alpha = 0.5;
 		FlxG.sound.play(Paths.sound('staticSound','clown'));
 		spookyText = new FlxText((x == -1111111111111 ? FlxG.random.float(dad.x + 40,dad.x + 120) : x), (y == -1111111111111 ? FlxG.random.float(dad.y + 200, dad.y + 300) : y));
-		spookyText.setFormat("Impact", 128, FlxColor.RED);
+		spookyText.setFormat("assets/fonts/Togalite-Bold.otf", fontSize, FlxColor.RED);
 		if (curStage == 'nevedaSpook')
 		{
 			spookyText.size = 200;
@@ -2265,7 +2266,11 @@ class PlayState extends MusicBeatState
 			{
 				MainMenuState.reRoll = true;
 
+				#if cpp
 				LoadingState.loadAndSwitchState(new VideoState("assets/videos/TricksterMan.webm",new MainMenuState()));
+				#else
+				LoadingState.loadAndSwitchState(new MainMenuState());
+				#end
 
 				if (storyDifficulty == 2)
 					FlxG.save.data.beatenHard = true;
@@ -2303,6 +2308,7 @@ class PlayState extends MusicBeatState
 
 				PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
 				FlxG.sound.music.stop();
+				#if cpp
 				switch(song.toLowerCase())
 				{
 					case 'improbable-outset':
@@ -2312,6 +2318,10 @@ class PlayState extends MusicBeatState
 					default:
 						LoadingState.loadAndSwitchState(new PlayState());
 				}
+				#else
+				LoadingState.loadAndSwitchState(new PlayState());
+				#end
+
 			}
 		}
 		else

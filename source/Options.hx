@@ -91,7 +91,7 @@ class DFJKOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return "Key Bindings";
+		return "操作ボタン";
 	}
 }
 
@@ -112,7 +112,7 @@ class DownscrollOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return FlxG.save.data.downscroll ? "Downscroll" : "Upscroll";
+		return FlxG.save.data.downscroll ? "アローが下から来る" : "アローが上から来る";
 	}
 }
 
@@ -133,7 +133,7 @@ class GhostTapOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return FlxG.save.data.ghost ? "Ghost Tapping" : "No Ghost Tapping";
+		return FlxG.save.data.ghost ? "ボタン連打できる" : "ボタン連打できない";
 	}
 }
 
@@ -153,7 +153,7 @@ class AccuracyOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return "Accuracy " + (!FlxG.save.data.accuracyDisplay ? "off" : "on");
+		return "精度が" + (!FlxG.save.data.accuracyDisplay ? "見えない" : "見える");
 	}
 }
 
@@ -173,7 +173,7 @@ class SongPositionOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return "Song Position " + (!FlxG.save.data.songPosition ? "off" : "on");
+		return "曲の進みが" + (!FlxG.save.data.songPosition ? "見えない" : "見える");
 	}
 }
 
@@ -215,7 +215,7 @@ class FPSOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return "FPS Counter " + (!FlxG.save.data.fps ? "off" : "on");
+		return "フレームレートが" + (!FlxG.save.data.fps ? "見えない" : "見える");
 	}
 }
 
@@ -237,7 +237,7 @@ class FPSCapOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return "FPS Cap - " + FlxG.save.data.fpsCap;
+		return "フレームレート限界：" + FlxG.save.data.fpsCap;
 	}
 	
 	override function right():Bool {
@@ -250,7 +250,7 @@ class FPSCapOption extends Option
 			FlxG.save.data.fpsCap = FlxG.save.data.fpsCap + 10;
 		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
 
-		display = "FPS Cap - " + FlxG.save.data.fpsCap;
+		display = "フレームレート限界：" + FlxG.save.data.fpsCap;
 
 		return true;
 	}
@@ -264,7 +264,7 @@ class FPSCapOption extends Option
 			FlxG.save.data.fpsCap = FlxG.save.data.fpsCap - 10;
 		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
 
-		display = "FPS Cap - " + FlxG.save.data.fpsCap;
+		display = "フレームレート限界：" + FlxG.save.data.fpsCap;
 
 		return true;
 	}
@@ -308,7 +308,7 @@ class ScrollSpeedOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return "Scroll Speed - " + FlxG.save.data.scrollSpeed;
+		return "アローの速さ：" + FlxG.save.data.scrollSpeed;
 	}
 
 	override function right():Bool {
@@ -320,7 +320,7 @@ class ScrollSpeedOption extends Option
 		if (FlxG.save.data.scrollSpeed > 10)
 			FlxG.save.data.scrollSpeed = 10;
 		
-		display = "Scroll Speed - " + FlxG.save.data.scrollSpeed;
+		display = "アローの速さ：" + FlxG.save.data.scrollSpeed;
 
 		return true;
 	}
@@ -334,7 +334,7 @@ class ScrollSpeedOption extends Option
 		if (FlxG.save.data.scrollSpeed > 10)
 			FlxG.save.data.scrollSpeed = 10;
 
-		display = "Scroll Speed - " + FlxG.save.data.scrollSpeed;
+		display = "アローの速さ：" + FlxG.save.data.scrollSpeed;
 
 		return true;
 	}
@@ -358,7 +358,7 @@ class NPSDisplayOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return "NPS Display " + (!FlxG.save.data.npsDisplay ? "off" : "on");
+		return "アロー毎秒が" + (!FlxG.save.data.npsDisplay ? "見えない" : "見える");
 	}
 }
 
@@ -379,6 +379,6 @@ class AccuracyDOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return "Accuracy Mode: " + (FlxG.save.data.accuracyMod == 0 ? "Accurate" : "Complex");
+		return "精度のモード：" + (FlxG.save.data.accuracyMod == 0 ? "正確" : "複雑");
 	}
 }

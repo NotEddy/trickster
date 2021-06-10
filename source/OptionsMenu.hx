@@ -20,7 +20,7 @@ class OptionsMenu extends MusicBeatState
 	var curSelected:Int = 0;
 
 	var options:Array<OptionCatagory> = [
-		new OptionCatagory("Gameplay", [
+		new OptionCatagory("ゲームプレイ", [
 			new DFJKOption(controls),
 			new GhostTapOption("Ghost Tapping is when you tap a direction and it doesn't give you a miss."),
 			#if desktop
@@ -29,7 +29,7 @@ class OptionsMenu extends MusicBeatState
 			new ScrollSpeedOption("Change your scroll speed (Left for -0.1, right for +0.1. If it's at 1, it will be chart dependent)"),
 			new AccuracyDOption("Change how accuracy is calculated. (Accurate = Simple, Complex = Milisecond Based)"),
 		]),
-		new OptionCatagory("Appearance", [
+		new OptionCatagory("グラフィック", [
 			#if desktop
 			new AccuracyOption("Display accuracy information."),
 			new NPSDisplayOption("Shows your current Notes Per Second."),
@@ -40,7 +40,7 @@ class OptionsMenu extends MusicBeatState
 			#end
 		]),
 		
-		new OptionCatagory("Misc", [
+		new OptionCatagory("他", [
 			new FPSOption("Toggle the FPS Counter")
 		])
 		
@@ -82,7 +82,7 @@ class OptionsMenu extends MusicBeatState
 
 			var text:FlxText = new FlxText(125,(95 * i) + 100, 0, option.getName(),34);
 			text.color = FlxColor.fromRGB(255,0,0);
-			text.setFormat("tahoma-bold.ttf", 60, FlxColor.RED);
+			text.setFormat("Noto Sans JP Bold", 60, FlxColor.RED);
 			add(text);
 			currentOptions.push(text);
 
@@ -97,7 +97,7 @@ class OptionsMenu extends MusicBeatState
 		currentOptions[0].color = FlxColor.WHITE;
 
 		offsetPog = new FlxText(125,600,0,"Offset: " + FlxG.save.data.offset);
-		offsetPog.setFormat("tahoma-bold.ttf",42,FlxColor.RED);
+		offsetPog.setFormat("Noto Sans JP Bold",42,FlxColor.RED);
 		add(offsetPog);
 
 		menuShade = new FlxSprite(-1350,-1190).loadGraphic(Paths.image("menu/freeplay/Menu Shade","clown"));
@@ -148,7 +148,7 @@ class OptionsMenu extends MusicBeatState
 					
 						var text:FlxText = new FlxText(125,(95 * i) + 100, 0, option.getName(),34);
 						text.color = FlxColor.fromRGB(255,0,0);
-						text.setFormat("tahoma-bold.ttf", 60, FlxColor.RED);
+						text.setFormat("Noto Sans JP Bold", 60, FlxColor.RED);
 						add(text);
 						currentOptions.push(text);
 					}
@@ -229,7 +229,7 @@ class OptionsMenu extends MusicBeatState
 					}
 			}
 
-			offsetPog.text = "Offset: " + FlxG.save.data.offset + " (Left/Right)";
+			offsetPog.text = "オフセット: " + FlxG.save.data.offset + "（右と左で変更できる）";
 
 			if (controls.RESET)
 					FlxG.save.data.offset = 0;
@@ -253,7 +253,7 @@ class OptionsMenu extends MusicBeatState
 
 								var text:FlxText = new FlxText(125,(95 * i) + 100, 0, option.getDisplay(),34);
 								text.color = FlxColor.fromRGB(255,0,0);
-								text.setFormat("tahoma-bold.ttf", 60, FlxColor.RED);
+								text.setFormat("Noto Sans JP Bold", 60, FlxColor.RED);
 								add(text);
 								currentOptions.push(text);
 							}
@@ -275,11 +275,11 @@ class OptionsMenu extends MusicBeatState
 							// clear and redo everything else
 							var option:Option = currentSelectedCat.getOptions()[i];
 
-							trace(option.getDisplay());
+							//trace(option.getDisplay());
 
 							var text:FlxText = new FlxText(125,(95 * i) + 100, 0, option.getDisplay(),34);
 							text.color = FlxColor.fromRGB(255,0,0);
-							text.setFormat("tahoma-bold.ttf", 60, FlxColor.RED);
+							text.setFormat("Noto Sans JP Bold", 60, FlxColor.RED);
 							add(text);
 							currentOptions.push(text);
 						}

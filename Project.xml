@@ -90,8 +90,8 @@
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
 	<haxelib name="actuate" />
-	<haxelib name="newgrounds"/>
-	<haxelib name="extension-webm"/>
+	<haxelib name="newgrounds" if="(!hl)"/>
+	<haxelib name="extension-webm" if="cpp"/>
 	<haxelib name="faxe" if='switch'/>
 	<haxelib name="polymod"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->

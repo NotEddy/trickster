@@ -96,7 +96,7 @@ class FreeplayState extends MusicBeatState
 		var score = Highscore.getScore(songs[selectedIndex].pognt,diff);
 
 		diffAndScore = new FlxText(125,600,0,diffGet() + " - " + score);
-		diffAndScore.setFormat("tahoma-bold.ttf",42,FlxColor.RED);
+		diffAndScore.setFormat("Noto Sans JP Bold",42,FlxColor.RED);
 
 		add(diffAndScore);
 
@@ -111,15 +111,15 @@ class FreeplayState extends MusicBeatState
 	function diffGet()
 	{
 		if (songs[selectedIndex].pognt == 'expurgation')
-			return "UNFAIR";
+			return "げきむず";
 		switch (diff)
 		{
 			case 0:
-				return "EASY";
+				return "やさしい";
 			case 1:
-				return "MEDIUM";
+				return "ふつう";
 			case 2:
-				return "HARD";
+				return "むずかしい";
 		}
 		return "what";
 	}

@@ -1,6 +1,8 @@
 package;
 
+#if (!hl)
 import webm.WebmPlayer;
+#end
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -86,7 +88,7 @@ class Main extends Sprite
         vHandler.init2();
         GlobalVideo.setVid(vHandler);
         vHandler.source(ourSource);
-        #elseif desktop
+        #elseif cpp
 		WebmPlayer.SKIP_STEP_LIMIT = 90; //haxelib git extension-webm https://github.com/ThatRozebudDude/extension-webm
         var str1:String = "WEBM SHIT"; 
         var webmHandle = new WebmHandler();
