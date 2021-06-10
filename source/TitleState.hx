@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxDestroyUtil;
 import Controls.KeyboardScheme;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -87,8 +88,10 @@ class TitleState extends MusicBeatState
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'Logo', 34);
 		logoBl.animation.play('bump');
-		logoBl.setGraphicSize(Std.int(logoBl.width * 0.5));
+		logoBl.setGraphicSize(Std.int(logoBl.width * 2));
 		logoBl.updateHitbox();
+		// logoBl.setGraphicSize(Std.int(logoBl.width * 0.5));
+		// logoBl.updateHitbox();
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
@@ -96,6 +99,8 @@ class TitleState extends MusicBeatState
 		gfDance.frames = Paths.getSparrowAtlas('DJ_Tricky','clown');
 		gfDance.animation.addByPrefix('dance', 'mixtape',24, true);
 		gfDance.antialiasing = true;
+		gfDance.setGraphicSize(Std.int(gfDance.width * 2));
+		gfDance.updateHitbox();
 		gfDance.setGraphicSize(Std.int(gfDance.width * 0.6));
 
 
@@ -108,9 +113,9 @@ class TitleState extends MusicBeatState
 		titleText.updateHitbox();
 		// titleText.screenCenter(X);
 
-		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
-		logo.screenCenter();
-		logo.antialiasing = true;
+		// var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
+		// logo.screenCenter();
+		// logo.antialiasing = true;
 		// add(logo);
 
 		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
@@ -154,7 +159,8 @@ class TitleState extends MusicBeatState
 		backupMen.antialiasing = true;
 
 
-		CachedFrames.loadEverything();
+		//CachedFrames.loadEverything();
+		CachedFrames.init();
 
 		Highscore.load();
 
@@ -195,13 +201,15 @@ class TitleState extends MusicBeatState
 			diamond.persist = true;
 			diamond.destroyOnNoUse = false;
 
+			var tempRect = new FlxRect(-2000, -200, FlxG.width * 5, FlxG.height * 3);
 			FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 1, new FlxPoint(0, -1), {asset: diamond, width: 32, height: 32},
-				new FlxRect(-2000, -200, FlxG.width * 5, FlxG.height * 3));
+				tempRect);
 			FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.7, new FlxPoint(0, 1),
-				{asset: diamond, width: 32, height: 32}, new FlxRect(-2000, -200, FlxG.width * 5, FlxG.height * 3));
+				{asset: diamond, width: 32, height: 32}, tempRect);
 
 			transIn = FlxTransitionableState.defaultTransIn;
 			transOut = FlxTransitionableState.defaultTransOut;
+			//tempRect.put();
 
 			// HAD TO MODIFY SOME BACKEND SHIT
 			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
@@ -277,23 +285,29 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (!CachedFrames.cachedInstance.loaded)
-		{
-			loadingImage.alpha = CachedFrames.cachedInstance.progress / 100;
-		}
-		else if (!once)
+		// if (!CachedFrames.cachedInstance.loaded)
+		// {
+		// 	loadingImage.alpha = CachedFrames.cachedInstance.progress / 100;
+		// }
+		// else if (!once)
+		// {
+		// 	once = true;
+		// 	var snd:FlxSound = new FlxSound().loadEmbedded(Paths.sound('complete','clown'));
+		// 	snd.play();
+		// 	loadingImage.alpha = 0;
+		// 	loadingDone.alpha = 1;
+		// 	FlxTween.tween(loadingDone,{alpha: 0}, 1);
+		// 	new FlxTimer().start(1.2, function(tmr:FlxTimer)
+		// 		{
+		// 			canSkip = true;
+		// 			startIntro();
+		// 		});
+		// }
+		if (!once)
 		{
 			once = true;
-			var snd:FlxSound = new FlxSound().loadEmbedded(Paths.sound('complete','clown'));
-			snd.play();
-			loadingImage.alpha = 0;
-			loadingDone.alpha = 1;
-			FlxTween.tween(loadingDone,{alpha: 0}, 1);
-			new FlxTimer().start(1.2, function(tmr:FlxTimer)
-				{
-					canSkip = true;
-					startIntro();
-				});
+			canSkip = true;
+			startIntro();
 		}
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
@@ -349,7 +363,7 @@ class TitleState extends MusicBeatState
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
 
-		if (pressedEnter && !skippedIntro && CachedFrames.cachedInstance.loaded && canSkip)
+		if (pressedEnter && !skippedIntro && canSkip)
 		{
 			skipIntro();
 		}
@@ -500,5 +514,16 @@ class TitleState extends MusicBeatState
 			remove(credGroup);
 			skippedIntro = true;
 		}
+	}
+
+	override function destroy()
+	{
+		persistentUpdate = false;
+		super.destroy();
+		FlxDestroyUtil.destroy(ngSpr);
+		FlxDestroyUtil.destroy(actualNG);
+		FlxDestroyUtil.destroy(backupMen);
+		FlxDestroyUtil.destroy(credGroup);
+		Main.clearMemoryHopefully();
 	}
 }

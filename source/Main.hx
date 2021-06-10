@@ -135,4 +135,16 @@ class Main extends Sprite
 	{
 		return fpsCounter.currentFPS;
 	}
+
+	inline static public function clearMemoryHopefully()
+	{
+		FlxG.bitmap.clearUnused();
+		FlxG.bitmap.clearCache();
+		Assets.cache.clear();
+		#if hl
+		hl.Gc.major();
+		#elseif cpp
+		cpp.vm.Gc.run(true);
+		#end
+	}
 }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="Smoke.png">
 <!-- Created with Kades Custom Converter -->
-<SubTexture name="smoke0000" x="0" y="0" width="103" height="112" frameX="-88" frameY="-105" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0001" x="153" y="0" width="134" height="149" frameX="-73" frameY="-88" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0002" x="337" y="0" width="158" height="174" frameX="-65" frameY="-78" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0003" x="545" y="0" width="191" height="213" frameX="-53" frameY="-57" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0004" x="786" y="0" width="208" height="246" frameX="-44" frameY="-43" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0005" x="1044" y="0" width="225" height="271" frameX="-36" frameY="-30" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0006" x="1319" y="0" width="255" height="279" frameX="-30" frameY="-26" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0007" x="1624" y="0" width="275" height="297" frameX="-21" frameY="-17" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0008" x="0" y="347" width="292" height="318" frameX="-12" frameY="-9" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0009" x="342" y="347" width="308" height="333" frameX="-3" frameY="-4" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0010" x="700" y="347" width="314" height="343" frameX="-0" frameY="-0" frameWidth="314" frameHeight="343"/>
-<SubTexture name="smoke0011" x="1064" y="347" width="0" height="0" frameX="-88" frameY="-105" frameWidth="314" frameHeight="343"/>
+<SubTexture name="smoke0000" x="0" y="0" width="25" height="28" frameX="-22" frameY="-26" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0001" x="38" y="0" width="33" height="37" frameX="-18" frameY="-22" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0002" x="84" y="0" width="39" height="43" frameX="-16" frameY="-19" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0003" x="136" y="0" width="47" height="53" frameX="-13" frameY="-14" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0004" x="196" y="0" width="52" height="61" frameX="-11" frameY="-10" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0005" x="261" y="0" width="56" height="67" frameX="-9" frameY="-7" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0006" x="329" y="0" width="63" height="69" frameX="-7" frameY="-6" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0007" x="406" y="0" width="68" height="74" frameX="-5" frameY="-4" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0008" x="0" y="86" width="73" height="79" frameX="-3" frameY="-2" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0009" x="85" y="86" width="77" height="83" frameX="-0" frameY="-1" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0010" x="175" y="86" width="78" height="85" frameX="-0" frameY="-0" frameWidth="78" frameHeight="85"/>
+<SubTexture name="smoke0011" x="266" y="86" width="0" height="0" frameX="-22" frameY="-26" frameWidth="78" frameHeight="85"/>
 </TextureAtlas>

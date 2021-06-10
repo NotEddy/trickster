@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxDestroyUtil;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -65,9 +66,7 @@ class Note extends FlxSprite
 		
 		noteData = _noteData % 4;
 
-		var daStage:String = PlayState.curStage;
-
-		switch (daStage)
+		switch (PlayState.curStage)
 		{
 			case 'school' | 'schoolEvil':
 				loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels'), true, 17, 17);
@@ -127,18 +126,19 @@ class Note extends FlxSprite
 				animation.addByPrefix('bluehold', 'blue hold piece');
 
 				if(burning){
-					if (daStage == 'auditorHell')
+					if (PlayState.curStage == 'auditorHell')
 					{
-						frames = Paths.getSparrowAtlas('fourth/mech/ALL_deathnotes', "clown");
+						/*frames = Paths.getSparrowAtlas('fourth/mech/ALL_deathnotes', "clown");
 						animation.addByPrefix('greenScroll', 'Green Arrow');
 						animation.addByPrefix('redScroll', 'Red Arrow');
 						animation.addByPrefix('blueScroll', 'Blue Arrow');
 						animation.addByPrefix('purpleScroll', 'Purple Arrow');
-						x -= 165;
+						x -= 165;*/
+						frames = Paths.getSparrowAtlas('NOTE_fire_alt', "clown");
 					}
 					else
 					{
-						frames = Paths.getSparrowAtlas('NOTE_fire', "clown");
+						/*frames = Paths.getSparrowAtlas('NOTE_fire', "clown");
 						if(!FlxG.save.data.downscroll){
 							animation.addByPrefix('blueScroll', 'blue fire');
 							animation.addByPrefix('greenScroll', 'green fire');
@@ -153,7 +153,8 @@ class Note extends FlxSprite
 						if(FlxG.save.data.downscroll)
 							flipY = true;
 
-						x -= 50;
+						x -= 50;*/
+						frames = Paths.getSparrowAtlas('NOTE_fire_alt', "clown");
 					}
 				}
 
@@ -162,24 +163,23 @@ class Note extends FlxSprite
 				antialiasing = true;
 		}
 
-		if (burning)
-			setGraphicSize(Std.int(width * 0.86));
-
-		switch (noteData)
-		{
-			case 0:
-				x += swagWidth * 0;
-				animation.play('purpleScroll');
-			case 1:
-				x += swagWidth * 1;
-				animation.play('blueScroll');
-			case 2:
-				x += swagWidth * 2;
-				animation.play('greenScroll');
-			case 3:
-				x += swagWidth * 3;
-				animation.play('redScroll');
-		}
+		// if (burning)
+		// 	setGraphicSize(Std.int(width * 0.86));
+			switch (noteData)
+			{
+				case 0:
+					x += swagWidth * 0;
+					animation.play('purpleScroll');
+				case 1:
+					x += swagWidth * 1;
+					animation.play('blueScroll');
+				case 2:
+					x += swagWidth * 2;
+					animation.play('greenScroll');
+				case 3:
+					x += swagWidth * 3;
+					animation.play('redScroll');
+			}
 
 		// trace(prevNote);
 
@@ -286,5 +286,11 @@ class Note extends FlxSprite
 			if (alpha > 0.3)
 				alpha = 0.3;
 		}
+	}
+
+	override public function destroy()
+	{
+		prevNote = null;
+		super.destroy();
 	}
 }

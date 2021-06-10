@@ -1,5 +1,9 @@
 package;
 
+import flixel.FlxSprite;
+import Song.SwagSong;
+import flixel.FlxState;
+import lime.utils.Assets;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSubState;
@@ -9,39 +13,81 @@ import flixel.util.FlxTimer;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
-	var bf:Boyfriend;
+	//var bf:Boyfriend;
 	var camFollow:FlxObject;
 
 	var stageSuffix:String = "";
 
-	public function new(x:Float, y:Float)
+	var daSong:SwagSong;
+
+	var sign:FlxSprite;
+
+	var startx:Float;
+	var starty:Float;
+
+	var animOffsets:Map<String, Array<Dynamic>> = new Map<String, Array<Dynamic>>();
+
+	// public function new(x:Float, y:Float)
+	// {
+	// 	startx = x;
+	// 	starty = y;
+	// 	//var daBf:String = 'bf';
+	// 	super();
+	// }
+
+	override function create()
 	{
-		var daStage = PlayState.curStage;
-		var daBf:String = 'signDeath';
-
-		super();
-
+		super.create();
 		Conductor.songPosition = 0;
 
-		bf = new Boyfriend(x, y, daBf);
-		add(bf);
+		//bf = new Boyfriend(x, y, daBf);
+		sign = new FlxSprite();
 
-		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
-		add(camFollow);
+		sign.frames = Paths.getSparrowAtlas('signDeath','clown');
+		sign.animation.addByPrefix('firstDeath', 'BF dies', 24, false);
+		sign.animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, false);
+		sign.animation.addByPrefix('deathConfirm', 'BF Dead confirm', 24, false);
+		//sign.screenCenter();
+		sign.x = startx;
+		sign.y = starty;
+
+		sign.setGraphicSize(Std.int(sign.width*2));
+		sign.updateHitbox();
+
+		// addOffset('firstDeath', 131);
+		// addOffset('deathLoop');
+		// addOffset('deathConfirm', 0, 23);
+
+		sign.antialiasing = false;
+		//sign.flipX = true;
+
+		//sign.screenCenter();
+		add(sign);
+
+		//bf.setGraphicSize(Std.int(bf.width*2));
+		//bf.updateHitbox();
+		//add(bf);
+
+		//camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
+		//add(camFollow);
 
 		FlxG.sound.play(Paths.sound('BF_Deathsound','clown'));
 		FlxG.sound.play(Paths.sound('Micdrop','clown'));
 		Conductor.changeBPM(200);
 
-		// FlxG.camera.followLerp = 1;
-		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
-		FlxG.camera.scroll.set();
+		//FlxG.camera.followLerp = 1;
+		//FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
+		//FlxG.camera.scroll.set();
 		FlxG.camera.target = null;
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.01);
+		FlxG.camera.follow(sign, LOCKON, 0.01);
 		
-		bf.playAnim('firstDeath');
-		bf.animation.resume();
+		//bf.playAnim('firstDeath');
+		//bf.animation.resume();
+		sign.x += 131;
+		sign.x += 131;
+		sign.y -= 250;
+		sign.animation.play('firstDeath');
 	}
 
 	var playedMic:Bool = false;
@@ -58,20 +104,23 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (controls.BACK)
 		{
 			FlxG.sound.music.stop();
-			MainMenuState.reRoll = true;
+			//MainMenuState.reRoll = true;
+			//clearCache();
 			FlxG.switchState(new MainMenuState());
-			PlayState.loadRep = false;
+			//PlayState.loadRep = false;
 		}
 
-		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
+		if (sign.animation.curAnim.name == 'firstDeath' && sign.animation.curAnim.finished)
 		{
 			FlxG.sound.playMusic(Paths.music('gameOver','clown'));
-			bf.playAnim('deathLoop', true);
+			sign.x += 131;
+			sign.x += 131;
+			sign.animation.play('deathLoop', true);
 		}
 
-		else if (bf.animation.curAnim.finished && bf.animation.curAnim.name != 'deathConfirm')
+		else if (sign.animation.curAnim.finished && sign.animation.curAnim.name != 'deathConfirm')
 		{
-			bf.playAnim('deathLoop', true);
+			sign.animation.play('deathLoop', true);
 		}
 
 		if (FlxG.sound.music.playing)
@@ -94,16 +143,29 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (!isEnding)
 		{
 			isEnding = true;
-			bf.playAnim('deathConfirm', true);
+			//bf.playAnim('deathConfirm', true);
+			sign.y -= 23;
+			sign.y -= 23;
+			sign.animation.play('deathConfirm', true);
+			//sign.screenCenter();
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.music('gameOverEnd','clown'));
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)
 			{
 				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
 				{
-					LoadingState.loadAndSwitchState(new PlayState());
+					//clearCache();
+					LoadingState.loadAndSwitchState(new PlayState(), false);
 				});
 			});
 		}
+	}
+
+	override function destroy()
+	{
+		CachedFrames.cachedInstance.clear();
+		animOffsets.clear();
+		super.destroy();
+		Main.clearMemoryHopefully();
 	}
 }

@@ -1,3 +1,4 @@
+import flixel.util.FlxDestroyUtil;
 import lime.utils.Assets;
 #if haxe4
 import haxe.xml.Access;
@@ -20,13 +21,19 @@ import flixel.graphics.frames.FlxAtlasFrames;
 class CachedFrames
 {
     public static var cachedInstance:CachedFrames;
+    static var gettedRects:Array<FlxRect> = new Array<FlxRect>();
 
     function new() {}
 
-    public static function loadEverything()
+    /*public static function loadEverything()
     {
         cachedInstance = new CachedFrames();
         cachedInstance.loadFrames();
+    }*/
+
+    public static function init()
+    {
+        cachedInstance = new CachedFrames();
     }
 
     // so it doesn't brick your computer lol!
@@ -77,6 +84,8 @@ class CachedFrames
 				sourceSize.set(size.height, size.width);
 
 			frames.addAtlasFrame(rect, sourceSize, offset, name, angle, flipX, flipY);
+            gettedRects.push(rect);
+            
 		}
 
         return frames;
@@ -96,22 +105,42 @@ class CachedFrames
         trace('Loaded ' + id);
     }
 
+    public function clear()
+    {
+        for (removeMe in cachedGraphics.keys())
+        {
+            cachedGraphics[removeMe].destroyOnNoUse = true;
+            cachedGraphics[removeMe].persist = false;
+            cachedGraphics[removeMe].bitmap.disposeImage();
+            cachedGraphics[removeMe].bitmap.dispose();
+            FlxDestroyUtil.destroy(cachedGraphics[removeMe]);
+            cachedGraphics.remove(removeMe);
+            FlxDestroyUtil.putArray(gettedRects);
+            gettedRects.splice(0, gettedRects.length);
+                
+        }
+    }
+
     public var toBeLoaded:Map<String,String> = new Map<String,String>();
 
 
     public var progress:Float = 0;
 
-    public function loadFrames()
+    public function loadFrames(which:String = "")
     {
-        sys.thread.Thread.create(() -> {
-            toBeLoaded.set('sign','fourth/mech/Sign_Post_Mechanic');
-            toBeLoaded.set('left','hellclwn/Tricky/Left');
-            toBeLoaded.set('right','hellclwn/Tricky/right');
-            toBeLoaded.set('up','hellclwn/Tricky/Up');
-            toBeLoaded.set('down','hellclwn/Tricky/Down');
-            toBeLoaded.set('idle','hellclwn/Tricky/Idle');
-            toBeLoaded.set('grem','fourth/mech/HP GREMLIN');
-            toBeLoaded.set('cln','fourth/Clone');
+            switch (which)
+            {
+                /*case "phase3":
+                    toBeLoaded.set('idle','hellclwn/Tricky/Idle');
+                    toBeLoaded.set('left','hellclwn/Tricky/Left');
+                    toBeLoaded.set('right','hellclwn/Tricky/right');
+                    toBeLoaded.set('up','hellclwn/Tricky/Up');
+                    toBeLoaded.set('down','hellclwn/Tricky/Down');*/
+                case "phase4":
+                    toBeLoaded.set('sign','fourth/mech/Sign_Post_Mechanic');
+                    toBeLoaded.set('grem','fourth/mech/HP GREMLIN');
+                    toBeLoaded.set('cln','fourth/Clone');
+            }
             // all the big sprites
             var numba = 0;
             for(i in toBeLoaded.keys())
@@ -122,6 +151,6 @@ class CachedFrames
             }
             trace('loaded everythin');
             loaded = true;
-        });
     }
+    
 }

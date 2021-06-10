@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NOTE_fire_alt.png">
+	<SubTexture name="arrowDANGER0000" x="0" y="0" width="154" height="154"/>
+</TextureAtlas>
