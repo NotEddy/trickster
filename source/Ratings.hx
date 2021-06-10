@@ -85,7 +85,7 @@ class Ratings
         }
 
         if (accuracy == 0)
-            ranking = "N/A";
+            ranking = "該当なし";
 		else if(FlxG.save.data.botplay)
 			ranking = "BotPlay";
 
@@ -131,7 +131,7 @@ class Ratings
         return 
         (FlxG.save.data.npsDisplay ? "アロー毎秒: " + nps + (!FlxG.save.data.botplay ? " | " : "") : "") + (!FlxG.save.data.botplay ?	// NPS Toggle
         "スコア:" + (Conductor.safeFrames != 10 ? score + " (" + scoreDef + ")" : "" + score) + 									// Score
-        " | ミス:" + PlayState.misses + 																				// Misses/Combo Breaks
+        " | ミス数:" + PlayState.misses + 																				// Misses/Combo Breaks
         " | 精度:" + (FlxG.save.data.botplay ? "該当なし" : HelperFunctions.truncateFloat(accuracy, 2) + " %") +  				// Accuracy
         " | " + GenerateLetterRank(accuracy) : ""); 																			// Letter Rank
     }

@@ -137,9 +137,9 @@ class TitleState extends MusicBeatState
 		ngSpr.y -= 100;
 		ngSpr.antialiasing = true;
 
-		actualNG= new FlxSprite(0, FlxG.height * 0.55).loadGraphic(Paths.image('newgrounds_logo','clown'));
+		actualNG= new FlxSprite(0, FlxG.height * 0.7).loadGraphic(Paths.image('newgrounds_logo','clown'));
 		actualNG.visible = false;
-		actualNG.setGraphicSize(Std.int(actualNG.width * 1.1));
+		actualNG.setGraphicSize(Std.int(actualNG.width * 0.7));
 		actualNG.updateHitbox();
 		actualNG.screenCenter(X);
 		actualNG.y -= 70;
