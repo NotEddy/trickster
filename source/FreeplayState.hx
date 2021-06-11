@@ -23,7 +23,7 @@ class FreeplayState extends MusicBeatState
 	var selectedIndex = 0;
 	var selectedSmth = false;
 
-	public static var diff = 0;
+	public static var diff = 2;
 	public static var diffAndScore:FlxText;
 
 	var debug:Bool = false;

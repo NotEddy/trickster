@@ -408,7 +408,8 @@ class MainMenuState extends MusicBeatState
 	{
 		
 		FlxG.mouse.visible = false;
-		
+		PlayState.storyPlaylist = ['Improbable Outset', 'Madness', 'Hellclown'];
+		PlayState.isStoryMode = true;
 
 		var diffic = "";
 

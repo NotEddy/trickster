@@ -2430,17 +2430,6 @@ class PlayState extends MusicBeatState
 				trace('LOADING NEXT SONG');
 				trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
 
-				// if (SONG.song.toLowerCase() == 'eggnog')
-				// {
-				// 	var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
-				// 		-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-				// 	blackShit.scrollFactor.set();
-				// 	add(blackShit);
-				// 	camHUD.visible = false;
-
-				// 	FlxG.sound.play(Paths.sound('Lights_Shut_off'));
-				// }
-
 				prevCamFollow = camFollow;
 
 				PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
