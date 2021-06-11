@@ -30,7 +30,7 @@ class FreeplayState extends MusicBeatState
 
 	var songFour:TrickyButton;
 
-	public static var diffText:AlphabetTricky;
+	//public static var diffText:AlphabetTricky;
 
 	override function create()
 	{

@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.display.shapes.FlxShapeCross;
 import flixel.group.FlxGroup;
 import flixel.util.FlxDestroyUtil;
 import flixel.graphics.FlxGraphic;
@@ -771,7 +772,8 @@ class PlayState extends MusicBeatState
 						actuallyRemove(spawnAnim);
 						startCountdown();
 					}
-					new FlxTimer().start(0.001, function(tmr:FlxTimer)
+					var tempTimer = new FlxTimer();
+					tempTimer.start(0.001, function(tmr:FlxTimer)
 					{
 						if (spawnAnim.animation.frameIndex == 24)
 						{
@@ -779,6 +781,7 @@ class PlayState extends MusicBeatState
 						}
 						else
 							tmr.reset(0.001);
+						FlxDestroyUtil.destroy(tempTimer);
 					});
 				default:
 					startCountdown();
@@ -905,7 +908,8 @@ class PlayState extends MusicBeatState
 		FlxG.sound.play(Paths.sound('fourth/GremlinWoosh', 'clown'));
 
 		gramlan.animation.play('come');
-		new FlxTimer().start(0.14, function(tmr:FlxTimer)
+		var tempTimer = new FlxTimer();
+		tempTimer.start(0.14, function(tmr:FlxTimer)
 		{
 			gramlan.animation.play('grab');
 			FlxTween.tween(gramlan, {x: iconP1.x - 140}, 1, {
@@ -964,6 +968,7 @@ class PlayState extends MusicBeatState
 					});
 				}
 			});
+			FlxDestroyUtil.destroy(tempTimer);
 		});
 	}
 
@@ -1612,7 +1617,8 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song.toLowerCase() == 'expurgation') // start the grem time
 		{
-			new FlxTimer().start(25, function(tmr:FlxTimer)
+			var tempTimer = new FlxTimer();
+			tempTimer.start(25, function(tmr:FlxTimer)
 			{
 				if (curStep < 2400)
 				{
@@ -1621,6 +1627,7 @@ class PlayState extends MusicBeatState
 					trace('checka ' + health);
 					tmr.reset(25);
 				}
+				FlxDestroyUtil.destroy(tempTimer);
 			});
 		}
 	}
@@ -1647,10 +1654,12 @@ class PlayState extends MusicBeatState
 		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
 
-		new FlxTimer().start(0.3, function(tmr:FlxTimer)
+		var tempTimer = new FlxTimer();
+		tempTimer.start(0.3, function(tmr:FlxTimer)
 		{
 			if (!paused)
 				resyncVocals();
+			FlxDestroyUtil.destroy(tempTimer);
 		});
 	}
 
@@ -3328,6 +3337,7 @@ class PlayState extends MusicBeatState
 		super.destroy();
 		for (i in 0...toDispose.length)
 			FlxDestroyUtil.destroy(toDispose[i]);
+		FlxDestroyUtil.destroy(startTimer);
 
 		Main.clearMemoryHopefully();
 	}

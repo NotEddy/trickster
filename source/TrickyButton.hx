@@ -1,4 +1,5 @@
 
+import flixel.util.FlxDestroyUtil;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
@@ -83,9 +84,11 @@ class TrickyButton extends FlxSprite
     {
         var sound:FlxSound = new FlxSound().loadEmbedded(Paths.sound("confirm","clown"));
         sound.play();
-        new FlxTimer().start(0.2, function(tmr:FlxTimer)
+        var tempTimer = new FlxTimer();
+        tempTimer.start(0.2, function(tmr:FlxTimer)
 		{
             func();
+            FlxDestroyUtil.destroy(tempTimer);
         });
     }
 }

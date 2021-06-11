@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxDestroyUtil;
 import lime.app.Promise;
 import lime.app.Future;
 import flixel.FlxG;
@@ -70,7 +71,9 @@ class LoadingState extends MusicBeatState
 				
 				var fadeTime = 0.5;
 				FlxG.camera.fade(FlxG.camera.bgColor, fadeTime, true);
-				new FlxTimer().start(fadeTime + MIN_TIME, function(_) introComplete());
+				
+				var tempTimer = new FlxTimer();
+				tempTimer.start(fadeTime + MIN_TIME, function(_){introComplete();FlxDestroyUtil.destroy(tempTimer);});
 			}
 		);
 	}
