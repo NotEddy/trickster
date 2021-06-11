@@ -2833,20 +2833,37 @@ class PlayState extends MusicBeatState
 								{
 									if (pressArray[spr.ID] && spr.ID == coolNote.noteData)
 									{
+										// var smoke:FlxSprite = new FlxSprite(0, 0);
+										// smoke.frames = Paths.getSparrowAtlas('Smoke', 'clown');
+										// smoke.setGraphicSize(Std.int(smoke.width * 4));
+										// smoke.x = spr.x - spr.width + 15;
+										// smoke.y = spr.y - spr.height;
+										// smoke.updateHitbox();
+										// smoke.animation.addByPrefix('boom', 'smoke', 24, false);
+										// smoke.animation.play('boom');
+										// smoke.setGraphicSize(Std.int(smoke.width * 0.6));
+										// smoke.cameras = [camHUD];
+										// add(smoke);
+										// smoke.animation.finishCallback = function(name:String)
+										// {
+										// 	actuallyRemove(smoke);
+										// }
 										var smoke:FlxSprite = new FlxSprite(0, 0);
-										smoke.frames = Paths.getSparrowAtlas('Smoke', 'clown');
+										smoke.frames = Paths.getSparrowAtlas('Smoke_alt', 'clown');
 										smoke.setGraphicSize(Std.int(smoke.width * 4));
-										smoke.x = spr.x - spr.width + 15;
-										smoke.y = spr.y - spr.height;
+										smoke.angle = 45;
 										smoke.updateHitbox();
+										smoke.x = (spr.x + spr.width/2) - smoke.width/2;
+										smoke.y = (spr.y + spr.height/2) - smoke.height/2;
+										smoke.alpha = 0.6;
+										smoke.cameras = [camHUD];
 										smoke.animation.addByPrefix('boom', 'smoke', 24, false);
 										smoke.animation.play('boom');
-										smoke.setGraphicSize(Std.int(smoke.width * 0.6));
-										smoke.cameras = [camHUD];
 										add(smoke);
 										smoke.animation.finishCallback = function(name:String)
 										{
-											actuallyRemove(smoke);
+											smoke.kill();
+											remove(smoke, true);
 										}
 									}
 								});
