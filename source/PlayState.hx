@@ -62,10 +62,10 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
-	public static var rep:Replay;
+	//public static var rep:Replay;
 	public static var loadRep:Bool = false;
 
-	public static var staticVar:PlayState;
+	//public static var staticVar:PlayState;
 	static var gf:Character = new Character();
 	public static var dad:Character = new Character();
 	static var boyfriend:Boyfriend = new Boyfriend();
@@ -154,7 +154,7 @@ class PlayState extends MusicBeatState
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
-	var replayTxt:FlxText;
+	//var replayTxt:FlxText;
 
 	var gfDance:Bool = false;
 
@@ -168,7 +168,7 @@ class PlayState extends MusicBeatState
 
 	public static var theFunne:Bool = true;
 
-	var funneEffect:FlxSprite;
+	//var funneEffect:FlxSprite;
 	var inCutscene:Bool = false;
 
 	public static var repPresses:Int = 0;
@@ -177,7 +177,7 @@ class PlayState extends MusicBeatState
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
 
-	public static var trans:FlxSprite;
+	//public static var trans:FlxSprite;
 
 	override public function create()
 	{
@@ -227,7 +227,7 @@ class PlayState extends MusicBeatState
 		FlxCamera.defaultCameras = [camGame];
 		// FlxG.cameras.setDefaultDrawTarget(camGame, true);
 
-		staticVar = this;
+		//staticVar = this;
 
 		persistentUpdate = true;
 		persistentDraw = true;
@@ -682,13 +682,13 @@ class PlayState extends MusicBeatState
 		scoreTxt.y = healthBarBG.y + 50;
 		add(scoreTxt);
 
-		replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "REPLAY", 20);
-		replayTxt.setFormat("PixelMplus12 Regular", 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		replayTxt.scrollFactor.set();
-		if (loadRep)
-		{
-			add(replayTxt);
-		}
+		// replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "REPLAY", 20);
+		// replayTxt.setFormat("PixelMplus12 Regular", 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		// replayTxt.scrollFactor.set();
+		// if (loadRep)
+		// {
+		// 	add(replayTxt);
+		// }
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -1931,7 +1931,7 @@ class PlayState extends MusicBeatState
 		return num;
 	}
 
-	var spookyText:FlxText;
+	//var spookyText:FlxText;
 	var spookyRendered:Bool = false;
 	var spookySteps:Int = 0;
 	var nps:Int = 0;
@@ -1983,11 +1983,11 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.switchState(new ChartingState());
 		}
+
 		if (FlxG.keys.justPressed.ONE)
 		{
 			endSong();
 		}
-
 		if (FlxG.keys.justPressed.TWO)
 		{
 			LoadingState.loadAndSwitchState(new PlayState(), false);
@@ -2202,9 +2202,7 @@ class PlayState extends MusicBeatState
 			vocals.stop();
 			FlxG.sound.music.stop();
 
-			var bfPos = boyfriend.getScreenPosition();
 			openSubState(new GameOverSubstate());
-			bfPos.put();
 
 			// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		}
@@ -3131,7 +3129,7 @@ class PlayState extends MusicBeatState
 
 	function manuallymanuallyresetspookytextmanual()
 	{
-		remove(spookyText);
+		//remove(spookyText);
 		spookyRendered = false;
 		// tstatic.alpha = 0;
 	}
@@ -3253,7 +3251,7 @@ class PlayState extends MusicBeatState
 		{
 			if (resetSpookyText)
 			{
-				actuallyRemove(spookyText);
+				//actuallyRemove(spookyText);
 				spookyRendered = false;
 			}
 			// tstatic.alpha = 0;
@@ -3355,6 +3353,11 @@ class PlayState extends MusicBeatState
 		for (i in 0...toDispose.length)
 			FlxDestroyUtil.destroy(toDispose[i]);
 		FlxDestroyUtil.destroy(startTimer);
+		FlxDestroyUtil.destroy(hank);
+		FlxDestroyUtil.destroy(prevCamFollow);
+		FlxG.cameras.reset();
+		FlxDestroyUtil.destroy(camGame);
+		FlxDestroyUtil.destroy(camHUD);
 
 		Main.clearMemoryHopefully();
 	}

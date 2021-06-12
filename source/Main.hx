@@ -140,6 +140,7 @@ class Main extends Sprite
 	{
 		FlxG.bitmap.clearUnused();
 		FlxG.bitmap.clearCache();
+		FlxG.bitmap.reset();
 		Assets.cache.clear();
 		#if hl
 		hl.Gc.major();
