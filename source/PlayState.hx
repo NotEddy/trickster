@@ -2000,28 +2000,24 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.U)
 		{
-			FlxG.sound.music.stop();
 			PlayState.SONG = Song.loadFromJson("improbable-outset-hard", "improbable-outset");
 			LoadingState.loadAndSwitchState(new PlayState(), false);
 		}
 
 		if (FlxG.keys.justPressed.I)
 		{
-			FlxG.sound.music.stop();
 			PlayState.SONG = Song.loadFromJson("madness-hard", "madness");
 			LoadingState.loadAndSwitchState(new PlayState(), false);
 		}
 
 		if (FlxG.keys.justPressed.O)
 		{
-			FlxG.sound.music.stop();
 			PlayState.SONG = Song.loadFromJson("hellclown-hard", "hellclown");
 			LoadingState.loadAndSwitchState(new PlayState(), false);
 		}
 
 		if (FlxG.keys.justPressed.P)
 		{
-			FlxG.sound.music.stop();
 			PlayState.SONG = Song.loadFromJson("expurgation-hard", "expurgation");
 			LoadingState.loadAndSwitchState(new PlayState(), false);
 		}
@@ -3349,6 +3345,7 @@ class PlayState extends MusicBeatState
 		add(playerStrums);
 		persistentUpdate = false;
 		persistentDraw = false;
+		FlxG.sound.destroy(true);
 		super.destroy();
 		for (i in 0...toDispose.length)
 			FlxDestroyUtil.destroy(toDispose[i]);
