@@ -92,6 +92,7 @@
 	<haxelib name="actuate" />
 	<haxelib name="newgrounds" if="(!hl)"/>
 	<haxelib name="extension-webm" if="cpp"/>
+	<haxelib name="hxcpp-debug-server" if="cpp"/>
 	<haxelib name="faxe" if='switch'/>
 	<haxelib name="polymod"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->

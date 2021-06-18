@@ -62,10 +62,10 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
-	//public static var rep:Replay;
+	// public static var rep:Replay;
 	public static var loadRep:Bool = false;
 
-	//public static var staticVar:PlayState;
+	// public static var staticVar:PlayState;
 	static var gf:Character = new Character();
 	public static var dad:Character = new Character();
 	static var boyfriend:Boyfriend = new Boyfriend();
@@ -99,9 +99,9 @@ class PlayState extends MusicBeatState
 	// cutscene text unhardcoding
 	public var cutsceneText:Array<String> = ["OMFG CLOWN!!!!", "YOU DO NOT KILL CLOWN", "CLOWN KILLS YOU!!!!!!"];
 
-	//public static var dad:Character;
-	//private var gf:Character;
-	//private var boyfriend:Boyfriend;
+	// public static var dad:Character;
+	// private var gf:Character;
+	// private var boyfriend:Boyfriend;
 	var MAINLIGHT:FlxSprite;
 
 	private var notes:FlxTypedGroup<Note>;
@@ -154,8 +154,8 @@ class PlayState extends MusicBeatState
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
-	//var replayTxt:FlxText;
 
+	// var replayTxt:FlxText;
 	var gfDance:Bool = false;
 
 	public static var campaignScore:Int = 0;
@@ -168,7 +168,7 @@ class PlayState extends MusicBeatState
 
 	public static var theFunne:Bool = true;
 
-	//var funneEffect:FlxSprite;
+	// var funneEffect:FlxSprite;
 	var inCutscene:Bool = false;
 
 	public static var repPresses:Int = 0;
@@ -177,7 +177,7 @@ class PlayState extends MusicBeatState
 	public static var timeCurrently:Float = 0;
 	public static var timeCurrentlyR:Float = 0;
 
-	//public static var trans:FlxSprite;
+	// public static var trans:FlxSprite;
 
 	override public function create()
 	{
@@ -227,7 +227,7 @@ class PlayState extends MusicBeatState
 		FlxCamera.defaultCameras = [camGame];
 		// FlxG.cameras.setDefaultDrawTarget(camGame, true);
 
-		//staticVar = this;
+		// staticVar = this;
 
 		persistentUpdate = true;
 		persistentDraw = true;
@@ -673,7 +673,7 @@ class PlayState extends MusicBeatState
 			add(kadeEngineWatermark); */
 
 		scoreTxt = new FlxText(0, 0, 0, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.screenCenter();
 		scoreTxt.x -= 200;
@@ -1715,7 +1715,7 @@ class PlayState extends MusicBeatState
 				else
 					oldNote = null;
 
-				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
+				var swagNote:Note = new Note(daStrumTime, daNoteData);
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
 
@@ -1727,8 +1727,12 @@ class PlayState extends MusicBeatState
 				for (susNote in 0...Math.floor(susLength))
 				{
 					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
+					var isLastSustain:Bool = false;
+					if (susNote == Math.floor(susLength) - 1)
+						isLastSustain = true;
 
-					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true);
+					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, true,
+						oldNote.isSustainNote, oldNote.noteData, isLastSustain);
 					sustainNote.scrollFactor.set();
 					unspawnNotes.push(sustainNote);
 
@@ -1931,7 +1935,7 @@ class PlayState extends MusicBeatState
 		return num;
 	}
 
-	//var spookyText:FlxText;
+	// var spookyText:FlxText;
 	var spookyRendered:Bool = false;
 	var spookySteps:Int = 0;
 	var nps:Int = 0;
@@ -2403,7 +2407,7 @@ class PlayState extends MusicBeatState
 
 			if (storyPlaylist.length <= 0)
 			{
-				//MainMenuState.reRoll = true;
+				// MainMenuState.reRoll = true;
 
 				// #if cpp
 				// LoadingState.loadAndSwitchState(new VideoState("assets/videos/TricksterMan.webm", new MainMenuState()));
@@ -2451,14 +2455,13 @@ class PlayState extends MusicBeatState
 				// LoadingState.loadAndSwitchState(new PlayState());
 				// #end
 				LoadingState.loadAndSwitchState(new PlayState());
-				
 			}
 		}
 		else
 		{
 			if (song.toLowerCase() == "expurgation")
 				FlxG.save.data.beatEx = true;
-			//MainMenuState.reRoll = true;
+			// MainMenuState.reRoll = true;
 			FlxG.switchState(new MainMenuState());
 		}
 	}
@@ -2847,8 +2850,8 @@ class PlayState extends MusicBeatState
 										smoke.setGraphicSize(Std.int(smoke.width * 4));
 										smoke.angle = 45;
 										smoke.updateHitbox();
-										smoke.x = (spr.x + spr.width/2) - smoke.width/2;
-										smoke.y = (spr.y + spr.height/2) - smoke.height/2;
+										smoke.x = (spr.x + spr.width / 2) - smoke.width / 2;
+										smoke.y = (spr.y + spr.height / 2) - smoke.height / 2;
 										smoke.alpha = 0.6;
 										smoke.cameras = [camHUD];
 										smoke.animation.addByPrefix('boom', 'smoke', 24, false);
@@ -3126,7 +3129,7 @@ class PlayState extends MusicBeatState
 
 	function manuallymanuallyresetspookytextmanual()
 	{
-		//remove(spookyText);
+		// remove(spookyText);
 		spookyRendered = false;
 		// tstatic.alpha = 0;
 	}
@@ -3248,7 +3251,7 @@ class PlayState extends MusicBeatState
 		{
 			if (resetSpookyText)
 			{
-				//actuallyRemove(spookyText);
+				// actuallyRemove(spookyText);
 				spookyRendered = false;
 			}
 			// tstatic.alpha = 0;

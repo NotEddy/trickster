@@ -22,7 +22,10 @@ class Note extends FlxSprite
 	public var canBeHit:Bool = false;
 	public var tooLate:Bool = false;
 	public var wasGoodHit:Bool = false;
-	public var prevNote:Note;
+	//public var prevNote:Note;
+	public var prevNoteisSustain:Bool = false;
+	public var prevNoteData:Int = 0;
+	public var isLastSustain:Bool = false;
 
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
@@ -37,15 +40,19 @@ class Note extends FlxSprite
 
 	public var rating:String = "shit";
 
-	public function new(_strumTime:Float, _noteData:Int, ?_prevNote:Note, ?sustainNote:Bool = false)
+	// public function new(_strumTime:Float, _noteData:Int, ?_prevNote:Note, ?sustainNote:Bool = false)
+	public function new(_strumTime:Float, _noteData:Int, sustainNote:Bool = false, prevSus:Bool = false, prevData:Int = -1, susEnd:Bool = false)
 	{
 		super();
 
-		if (_prevNote == null)
-			_prevNote = this;
+		// if (_prevNote == null)
+		// 	_prevNote = this;
 
-		prevNote = _prevNote;
+		// prevNote = _prevNote;
+		prevNoteisSustain = prevSus;
+		prevNoteData = prevData;
 		isSustainNote = sustainNote;
+		isLastSustain = susEnd;
 
 		x += 50;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
@@ -57,9 +64,9 @@ class Note extends FlxSprite
 		//if(!isSustainNote) { burning = Std.random(3) == 1; } //Set random notes to burning
 
 		//No held fire notes :[ (Part 1)
-		if(isSustainNote && prevNote.burning) { 
-			burning = true;
-		}
+		// if(isSustainNote && prevNote.burning) { 
+		// 	burning = true;
+		// }
 
 		if(isSustainNote && FlxG.save.data.downscroll)
 			flipY = true;
@@ -183,23 +190,45 @@ class Note extends FlxSprite
 
 		// trace(prevNote);
 
-		if (isSustainNote && prevNote != null)
+		//if (isSustainNote && prevNote != null)
+		if (isSustainNote && prevNoteData != -1)
 		{
 			noteScore * 0.2;
 			alpha = 0.6;
 
 			x += width / 2;
 
-			switch (noteData)
+			if (isLastSustain)
 			{
-				case 2:
-					animation.play('greenholdend');
-				case 3:
-					animation.play('redholdend');
-				case 1:
-					animation.play('blueholdend');
-				case 0:
-					animation.play('purpleholdend');
+				switch (noteData)
+				{
+					case 2:
+						animation.play('greenholdend');
+					case 3:
+						animation.play('redholdend');
+					case 1:
+						animation.play('blueholdend');
+					case 0:
+						animation.play('purpleholdend');
+				}
+			}
+			else
+			{
+				switch (noteData)
+				{
+					case 0:
+						animation.play('purplehold');
+					case 1:
+						animation.play('bluehold');
+					case 2:
+						animation.play('greenhold');
+					case 3:
+						animation.play('redhold');
+				}
+
+				scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
+				updateHitbox();
+				// prevNote.setGraphicSize();
 			}
 
 			updateHitbox();
@@ -209,24 +238,7 @@ class Note extends FlxSprite
 			if (PlayState.curStage.startsWith('school'))
 				x += 30;
 
-			if (prevNote.isSustainNote)
-			{
-				switch (prevNote.noteData)
-				{
-					case 0:
-						prevNote.animation.play('purplehold');
-					case 1:
-						prevNote.animation.play('bluehold');
-					case 2:
-						prevNote.animation.play('greenhold');
-					case 3:
-						prevNote.animation.play('redhold');
-				}
-
-				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
-				prevNote.updateHitbox();
-				// prevNote.setGraphicSize();
-			}
+			
 		}
 	}
 
@@ -235,9 +247,9 @@ class Note extends FlxSprite
 		super.update(elapsed);
 
 		//No held fire notes :[ (Part 2)
-		if(isSustainNote && prevNote.burning) { 
-			this.kill(); 
-		}
+		// if(isSustainNote && prevNote.burning) { 
+		// 	this.kill(); 
+		// }
 
 		if (mustPress)
 		{
@@ -290,7 +302,8 @@ class Note extends FlxSprite
 
 	override public function destroy()
 	{
-		prevNote = null;
+		// prevNote = null;
 		super.destroy();
+		
 	}
 }
