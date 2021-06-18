@@ -30,8 +30,8 @@ class TrickyTextButton extends FlxSprite
         spriteOne = new FlxText(x,y,0,textOne, size);
         spriteTwo =  new FlxText(x,y,0,textTwo, size);
 
-        spriteOne.setFormat("Noto Sans JP Bold",size,FlxColor.RED);
-        spriteTwo.setFormat("Noto Sans JP Bold",size,FlxColor.WHITE);
+        spriteOne.setFormat("tahoma-bold.ttf",size,FlxColor.RED);
+        spriteTwo.setFormat("tahoma-bold.ttf",size,FlxColor.WHITE);
 
         spriteOne.antialiasing = true;
         spriteTwo.antialiasing = true;

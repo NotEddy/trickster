@@ -105,13 +105,13 @@ class TitleState extends MusicBeatState
 		gfDance.updateHitbox();
 		gfDance.setGraphicSize(Std.int(gfDance.width * 0.6));
 
-		// titleText = new FlxSprite(100, FlxG.height * 0.8);
-		// titleText.frames = Paths.getSparrowAtlas('titleEnter');
-		// titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
-		// titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
-		// titleText.antialiasing = true;
-		// titleText.animation.play('idle');
-		// titleText.updateHitbox();
+		titleText = new FlxSprite(100, FlxG.height * 0.8);
+		titleText.frames = Paths.getSparrowAtlas('titleEnter');
+		titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
+		titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
+		titleText.antialiasing = true;
+		titleText.animation.play('idle');
+		titleText.updateHitbox();
 		// titleText.screenCenter(X);
 
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
@@ -191,7 +191,7 @@ class TitleState extends MusicBeatState
 	var logoBl:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
-	//var titleText:FlxSprite;
+	var titleText:FlxSprite;
 
 	// var loadingImage:FlxSprite;
 	// var loadingDone:FlxSprite;
@@ -233,15 +233,10 @@ class TitleState extends MusicBeatState
 		// bg.setGraphicSize(Std.int(bg.width * 0.6));
 		// bg.updateHitbox();
 
-		var titleTextPlaceholder = new FlxText(0, FlxG.height * 0.8, 0, "Enterキーを押すとスタートする", 70);
-		titleTextPlaceholder.setFormat("PixelMplus12 Regular", titleTextPlaceholder.size, 0x00ffffff, FlxTextAlign.CENTER, OUTLINE);
-		titleTextPlaceholder.screenCenter(flixel.util.FlxAxes.X);
-
 		add(bg);
 		add(gfDance);
 		add(logoBl);
-		//add(titleText);
-		add(titleTextPlaceholder);
+		add(titleText);
 		add(credGroup);
 		add(ngSpr);
 		add(actualNG);
@@ -326,7 +321,7 @@ class TitleState extends MusicBeatState
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
 
-			// titleText.animation.play('press');
+			titleText.animation.play('press');
 
 			FlxG.camera.flash(FlxColor.WHITE, 1);
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);

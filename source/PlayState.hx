@@ -673,7 +673,7 @@ class PlayState extends MusicBeatState
 			add(kadeEngineWatermark); */
 
 		scoreTxt = new FlxText(0, 0, 0, "", 20);
-		scoreTxt.setFormat("PixelMplus12 Regular", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.screenCenter();
 		scoreTxt.x -= 200;
@@ -683,7 +683,7 @@ class PlayState extends MusicBeatState
 		add(scoreTxt);
 
 		// replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0, "REPLAY", 20);
-		// replayTxt.setFormat("PixelMplus12 Regular", 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		// replayTxt.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		// replayTxt.scrollFactor.set();
 		// if (loadRep)
 		// {
@@ -2371,7 +2371,7 @@ class PlayState extends MusicBeatState
 			tstatic.alpha = 0.5;
 			FlxG.sound.play(Paths.sound('staticSound','clown'));
 			spookyText = new FlxText((x == -1111111111111 ? FlxG.random.float(dad.x + 40,dad.x + 120) : x), (y == -1111111111111 ? FlxG.random.float(dad.y + 200, dad.y + 300) : y));
-			spookyText.setFormat("assets/fonts/Togalite-Bold.otf", fontSize, FlxColor.RED);
+			spookyText.setFormat("Impact", 128, FlxColor.RED);
 			if (curStage == 'nevedaSpook')
 			{
 				spookyText.size = 200;
@@ -2858,6 +2858,7 @@ class PlayState extends MusicBeatState
 										{
 											smoke.kill();
 											remove(smoke, true);
+											smoke.destroy();
 										}
 									}
 								});
@@ -3345,7 +3346,7 @@ class PlayState extends MusicBeatState
 		add(playerStrums);
 		persistentUpdate = false;
 		persistentDraw = false;
-		FlxG.sound.destroy(true);
+		// FlxG.sound.destroy(true); lolwut this causes crashes
 		super.destroy();
 		for (i in 0...toDispose.length)
 			FlxDestroyUtil.destroy(toDispose[i]);

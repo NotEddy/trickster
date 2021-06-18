@@ -30,7 +30,7 @@ class FreeplayState extends MusicBeatState
 
 	var songFour:TrickyButton;
 
-	//public static var diffText:AlphabetTricky;
+	// public static var diffText:AlphabetTricky;
 
 	override function create()
 	{
@@ -102,7 +102,7 @@ class FreeplayState extends MusicBeatState
 		var score = Highscore.getScore(songs[selectedIndex].pognt, diff);
 
 		diffAndScore = new FlxText(125, 600, 0, diffGet() + " - " + score);
-		diffAndScore.setFormat("Noto Sans JP Bold", 42, FlxColor.RED);
+		diffAndScore.setFormat("tahoma-bold.ttf", 42, FlxColor.RED);
 
 		add(diffAndScore);
 
@@ -116,15 +116,15 @@ class FreeplayState extends MusicBeatState
 	function diffGet()
 	{
 		if (songs[selectedIndex].pognt == 'expurgation')
-			return "げきむず";
+			return "UNFAIR";
 		switch (diff)
 		{
 			case 0:
-				return "やさしい";
+				return "EASY";
 			case 1:
-				return "ふつう";
+				return "MEDIUM";
 			case 2:
-				return "むずかしい";
+				return "HARD";
 		}
 		return "what";
 	}
@@ -186,7 +186,7 @@ class FreeplayState extends MusicBeatState
 		if (FlxG.keys.justPressed.ESCAPE && !selectedSmth)
 		{
 			selectedSmth = true;
-			//MainMenuState.curDifficulty = diff;
+			// MainMenuState.curDifficulty = diff;
 			FlxG.switchState(new MainMenuState());
 		}
 

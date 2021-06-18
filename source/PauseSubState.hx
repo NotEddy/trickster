@@ -20,7 +20,7 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<FlxText>;
 
-	var menuItems:Array<String> = ['ゲーム再開', '再び起動', 'メニューに戻る'];
+	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
 	var curSelected:Int = 0;
 
 	var gapSizeY:Float = 120;
@@ -82,7 +82,7 @@ class PauseSubState extends MusicBeatSubstate
 			// var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
 			// songText.isMenuItem = true;
 			var songText:FlxText = new FlxText(gapSizeX * i + 100, (gapSizeY * i) + FlxG.height / 2, 0, menuItems[i], 80);
-			songText.setFormat("assets/fonts/yuseimagic.ttf", songText.size, FlxColor.WHITE, LEFT, SHADOW, FlxColor.BLACK);
+			songText.setFormat("assets/fonts/vcr.ttf", songText.size, FlxColor.WHITE, LEFT, SHADOW, FlxColor.BLACK);
 			songText.borderSize = 12;
 			songText.borderQuality = 1;
 			grpMenuShit.add(songText);
@@ -123,15 +123,15 @@ class PauseSubState extends MusicBeatSubstate
 
 			switch (daSelected)
 			{
-				case "ゲーム再開":
+				case "Resume":
 					close();
-				case "再び起動":
+				case "Restart Song":
 					// FlxG.resetState();
 					// clearCache();
 					// CachedFrames.cachedInstance.clear();
 					LoadingState.loadAndSwitchState(new PlayState());
 				// daSong = null;
-				case "メニューに戻る":
+				case "Exit to menu":
 					// PlayState.loadRep = false;
 					// MainMenuState.reRoll = true;
 					// clearCache();

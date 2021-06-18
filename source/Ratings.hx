@@ -4,7 +4,7 @@ class Ratings
 {
     public static function GenerateLetterRank(accuracy:Float) // generate a letter ranking
     {
-        var ranking:String = "該当なし";
+        var ranking:String = "N/A";
 		if(FlxG.save.data.botplay)
 			ranking = "BotPlay";
 
@@ -85,7 +85,7 @@ class Ratings
         }
 
         if (accuracy == 0)
-            ranking = "該当なし";
+            ranking = "N/A";
 		else if(FlxG.save.data.botplay)
 			ranking = "BotPlay";
 
@@ -129,10 +129,10 @@ class Ratings
     public static function CalculateRanking(score:Int,scoreDef:Int,nps:Int,accuracy:Float):String
     {
         return 
-        (FlxG.save.data.npsDisplay ? "アロー毎秒: " + nps + (!FlxG.save.data.botplay ? " | " : "") : "") + (!FlxG.save.data.botplay ?	// NPS Toggle
-        "スコア:" + (Conductor.safeFrames != 10 ? score + " (" + scoreDef + ")" : "" + score) + 									// Score
-        " | ミス数:" + PlayState.misses + 																				// Misses/Combo Breaks
-        " | 精度:" + (FlxG.save.data.botplay ? "該当なし" : HelperFunctions.truncateFloat(accuracy, 2) + " %") +  				// Accuracy
+        (FlxG.save.data.npsDisplay ? "NPS: " + nps + (!FlxG.save.data.botplay ? " | " : "") : "") + (!FlxG.save.data.botplay ?	// NPS Toggle
+        "Score:" + (Conductor.safeFrames != 10 ? score + " (" + scoreDef + ")" : "" + score) + 									// Score
+        " | Combo Breaks:" + PlayState.misses + 																				// Misses/Combo Breaks
+        " | Accuracy:" + (FlxG.save.data.botplay ? "N/A" : HelperFunctions.truncateFloat(accuracy, 2) + " %") +  				// Accuracy
         " | " + GenerateLetterRank(accuracy) : ""); 																			// Letter Rank
     }
 }

@@ -555,7 +555,7 @@ class MainMenuState extends MusicBeatState
 
 					var text = new FlxText(tinyMan.x - 200, tinyMan.y + 285, 0, lines[FlxG.random.int(0, lines.length - 1)]);
 
-					text.setFormat('tahoma-bold.ttf', 24, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					text.setFormat('tahoma-bold.ttf',24,FlxColor.WHITE,FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 
 					add(text);
 
