@@ -61,6 +61,7 @@ class PlayState extends MusicBeatState
 	public static var bads:Int = 0;
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
+	public static var pixelOnly:Bool = false;
 
 	// public static var rep:Replay;
 	public static var loadRep:Bool = false;
@@ -1777,10 +1778,10 @@ class PlayState extends MusicBeatState
 			// FlxG.log.add(i);
 			var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
 
-			switch (curStage)
+			switch (pixelOnly)
 			{
-				case 'school' | 'schoolEvil':
-					babyArrow.loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels'), true, 17, 17);
+				case true:
+					babyArrow.loadGraphic(Paths.image('arrows-pixels'), true, 17, 17);
 					babyArrow.animation.add('green', [6]);
 					babyArrow.animation.add('red', [7]);
 					babyArrow.animation.add('blue', [5]);
@@ -1988,43 +1989,43 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new ChartingState());
 		}
 
-		if (FlxG.keys.justPressed.ONE)
-		{
-			endSong();
-		}
-		if (FlxG.keys.justPressed.TWO)
-		{
-			LoadingState.loadAndSwitchState(new PlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.ONE)
+		// {
+		// 	endSong();
+		// }
+		// if (FlxG.keys.justPressed.TWO)
+		// {
+		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
+		// }
 
-		if (FlxG.keys.justPressed.THREE)
-		{
-			health = 0;
-		}
+		// if (FlxG.keys.justPressed.THREE)
+		// {
+		// 	health = 0;
+		// }
 
-		if (FlxG.keys.justPressed.U)
-		{
-			PlayState.SONG = Song.loadFromJson("improbable-outset-hard", "improbable-outset");
-			LoadingState.loadAndSwitchState(new PlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.U)
+		// {
+		// 	PlayState.SONG = Song.loadFromJson("improbable-outset-hard", "improbable-outset");
+		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
+		// }
 
-		if (FlxG.keys.justPressed.I)
-		{
-			PlayState.SONG = Song.loadFromJson("madness-hard", "madness");
-			LoadingState.loadAndSwitchState(new PlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.I)
+		// {
+		// 	PlayState.SONG = Song.loadFromJson("madness-hard", "madness");
+		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
+		// }
 
-		if (FlxG.keys.justPressed.O)
-		{
-			PlayState.SONG = Song.loadFromJson("hellclown-hard", "hellclown");
-			LoadingState.loadAndSwitchState(new PlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.O)
+		// {
+		// 	PlayState.SONG = Song.loadFromJson("hellclown-hard", "hellclown");
+		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
+		// }
 
-		if (FlxG.keys.justPressed.P)
-		{
-			PlayState.SONG = Song.loadFromJson("expurgation-hard", "expurgation");
-			LoadingState.loadAndSwitchState(new PlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.P)
+		// {
+		// 	PlayState.SONG = Song.loadFromJson("expurgation-hard", "expurgation");
+		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
+		// }
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
@@ -2905,7 +2906,7 @@ class PlayState extends MusicBeatState
 			if (!holdArray[spr.ID])
 				spr.animation.play('static');
 
-			if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+			if (spr.animation.curAnim.name == 'confirm' && !pixelOnly)
 			{
 				spr.centerOffsets();
 				spr.offset.x -= 13;

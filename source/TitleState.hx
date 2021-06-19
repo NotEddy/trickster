@@ -1,5 +1,6 @@
 package;
 
+import haxe.Exception;
 import flixel.util.FlxDestroyUtil;
 import flixel.FlxBasic;
 import flixel.system.FlxAssets.GraphicLogo;
@@ -48,6 +49,11 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		#if desktop
+		if (!(sys.FileSystem.exists("assets/data/madness/madness.json")))
+			throw new Exception("Install this mod over the original Tricky mod.");
+		#end
+
 		#if polymod
 		// polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end

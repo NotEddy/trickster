@@ -73,10 +73,10 @@ class Note extends FlxSprite
 		
 		noteData = _noteData % 4;
 
-		switch (PlayState.curStage)
+		switch (PlayState.pixelOnly)
 		{
-			case 'school' | 'schoolEvil':
-				loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels'), true, 17, 17);
+			case true:
+				loadGraphic(Paths.image('arrows-pixels'), true, 17, 17);
 
 				animation.add('greenScroll', [6]);
 				animation.add('redScroll', [7]);
@@ -85,7 +85,7 @@ class Note extends FlxSprite
 
 				if (isSustainNote)
 				{
-					loadGraphic(Paths.image('weeb/pixelUI/arrowEnds'), true, 7, 6);
+					loadGraphic(Paths.image('arrowEnds'), true, 7, 6);
 
 					animation.add('purpleholdend', [4]);
 					animation.add('greenholdend', [6]);
@@ -101,13 +101,13 @@ class Note extends FlxSprite
 
 				if(burning){
 					
-					loadGraphic(Paths.image('NOTE_fire-pixel', "clown"), true, 21, 31);
+					loadGraphic(Paths.image('NOTE_fire-pixel_alt', "clown"));
 					
-					animation.add('greenScroll', [6, 7, 6, 8], 8);
-					animation.add('redScroll', [9, 10, 9, 11], 8);
-					animation.add('blueScroll', [3, 4, 3, 5], 8);
-					animation.add('purpleScroll', [0, 1 ,0, 2], 8);
-					x -= 15;
+					// animation.add('greenScroll', [6, 7, 6, 8], 8);
+					// animation.add('redScroll', [9, 10, 9, 11], 8);
+					// animation.add('blueScroll', [3, 4, 3, 5], 8);
+					// animation.add('purpleScroll', [0, 1 ,0, 2], 8);
+					// x -= 15;
 
 				}
 
@@ -235,7 +235,7 @@ class Note extends FlxSprite
 
 			x -= width / 2;
 
-			if (PlayState.curStage.startsWith('school'))
+			if (PlayState.pixelOnly)
 				x += 30;
 
 			
