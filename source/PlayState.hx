@@ -72,6 +72,9 @@ class PlayState extends MusicBeatState
 	static var boyfriend:Boyfriend = new Boyfriend();
 
 	var toDispose:Array<FlxBasic> = [];
+
+	var gremlinTimer = new FlxTimer();
+
 	var halloweenLevel:Bool = false;
 
 	private var vocals:FlxSound;
@@ -1618,8 +1621,7 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song.toLowerCase() == 'expurgation') // start the grem time
 		{
-			var tempTimer = new FlxTimer();
-			tempTimer.start(25, function(tmr:FlxTimer)
+			gremlinTimer.start(25, function(tmr:FlxTimer)
 			{
 				if (curStep < 2400)
 				{
@@ -1628,7 +1630,6 @@ class PlayState extends MusicBeatState
 					trace('checka ' + health);
 					tmr.reset(25);
 				}
-				FlxDestroyUtil.destroy(tempTimer);
 			});
 		}
 	}
@@ -1984,7 +1985,7 @@ class PlayState extends MusicBeatState
 			bfPos.put();
 		}
 
-		if (FlxG.keys.justPressed.SEVEN)
+		/*if (FlxG.keys.justPressed.SEVEN)
 		{
 			FlxG.switchState(new ChartingState());
 		}
@@ -2025,7 +2026,7 @@ class PlayState extends MusicBeatState
 		{
 			PlayState.SONG = Song.loadFromJson("expurgation-hard", "expurgation");
 			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
-		}
+		}*/
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
@@ -3360,6 +3361,7 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.reset();
 		FlxDestroyUtil.destroy(camGame);
 		FlxDestroyUtil.destroy(camHUD);
+		FlxDestroyUtil.destroy(gremlinTimer);
 
 		Main.clearMemoryHopefully();
 	}
