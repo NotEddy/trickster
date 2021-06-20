@@ -515,6 +515,7 @@ class PlayState extends MusicBeatState
 
 		// boyfriend = new Boyfriend(770, 450, bfVersion);
 		boyfriend.doCrap(770, 450, bfVersion, true);
+		boyfriend.stunned = false;
 
 		// REPOSITIONING PER STAGE
 		switch (curStage)
@@ -1980,9 +1981,7 @@ class PlayState extends MusicBeatState
 			persistentUpdate = false;
 			persistentDraw = true;
 			paused = true;
-			var bfPos = boyfriend.getScreenPosition();
 			openSubState(new PauseSubState());
-			bfPos.put();
 		}
 
 		/*if (FlxG.keys.justPressed.SEVEN)
