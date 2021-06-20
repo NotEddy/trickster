@@ -107,7 +107,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			FlxG.sound.music.stop();
 			//MainMenuState.reRoll = true;
 			//clearCache();
-			FlxG.switchState(new MainMenuState());
+			FlxG.switchState(new AlmostMainMenuState());
 			//PlayState.loadRep = false;
 		}
 
@@ -157,7 +157,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
 				{
 					//clearCache();
-					LoadingState.loadAndSwitchState(new PlayState(), false);
+					LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
 					FlxDestroyUtil.destroy(tempTimer);
 				});
 			});

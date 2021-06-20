@@ -129,7 +129,7 @@ class PauseSubState extends MusicBeatSubstate
 					// FlxG.resetState();
 					// clearCache();
 					// CachedFrames.cachedInstance.clear();
-					LoadingState.loadAndSwitchState(new PlayState());
+					LoadingState.loadAndSwitchState(new AlmostPlayState());
 				// daSong = null;
 				case "Exit to menu":
 					// PlayState.loadRep = false;
@@ -137,7 +137,7 @@ class PauseSubState extends MusicBeatSubstate
 					// clearCache();
 					// daSong = null;
 					// CachedFrames.cachedInstance.clear();
-					FlxG.switchState(new MainMenuState());
+					FlxG.switchState(new AlmostMainMenuState());
 				case "Skip Song":
 					close();
 					// PlayState.staticVar.endSong();

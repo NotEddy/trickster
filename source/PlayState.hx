@@ -1989,43 +1989,43 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new ChartingState());
 		}
 
-		// if (FlxG.keys.justPressed.ONE)
-		// {
-		// 	endSong();
-		// }
-		// if (FlxG.keys.justPressed.TWO)
-		// {
-		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
-		// }
+		if (FlxG.keys.justPressed.ONE)
+		{
+			endSong();
+		}
+		if (FlxG.keys.justPressed.TWO)
+		{
+			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		}
 
-		// if (FlxG.keys.justPressed.THREE)
-		// {
-		// 	health = 0;
-		// }
+		if (FlxG.keys.justPressed.THREE)
+		{
+			health = 0;
+		}
 
-		// if (FlxG.keys.justPressed.U)
-		// {
-		// 	PlayState.SONG = Song.loadFromJson("improbable-outset-hard", "improbable-outset");
-		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
-		// }
+		if (FlxG.keys.justPressed.U)
+		{
+			PlayState.SONG = Song.loadFromJson("improbable-outset-hard", "improbable-outset");
+			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		}
 
-		// if (FlxG.keys.justPressed.I)
-		// {
-		// 	PlayState.SONG = Song.loadFromJson("madness-hard", "madness");
-		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
-		// }
+		if (FlxG.keys.justPressed.I)
+		{
+			PlayState.SONG = Song.loadFromJson("madness-hard", "madness");
+			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		}
 
-		// if (FlxG.keys.justPressed.O)
-		// {
-		// 	PlayState.SONG = Song.loadFromJson("hellclown-hard", "hellclown");
-		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
-		// }
+		if (FlxG.keys.justPressed.O)
+		{
+			PlayState.SONG = Song.loadFromJson("hellclown-hard", "hellclown");
+			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		}
 
-		// if (FlxG.keys.justPressed.P)
-		// {
-		// 	PlayState.SONG = Song.loadFromJson("expurgation-hard", "expurgation");
-		// 	LoadingState.loadAndSwitchState(new PlayState(), false);
-		// }
+		if (FlxG.keys.justPressed.P)
+		{
+			PlayState.SONG = Song.loadFromJson("expurgation-hard", "expurgation");
+			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		}
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
@@ -2415,7 +2415,7 @@ class PlayState extends MusicBeatState
 				// #else
 				// LoadingState.loadAndSwitchState(new MainMenuState());
 				// #end
-				LoadingState.loadAndSwitchState(new MainMenuState());
+				LoadingState.loadAndSwitchState(new AlmostMainMenuState());
 
 				if (storyDifficulty == 2)
 					FlxG.save.data.beatenHard = true;
@@ -2455,7 +2455,7 @@ class PlayState extends MusicBeatState
 				// #else
 				// LoadingState.loadAndSwitchState(new PlayState());
 				// #end
-				LoadingState.loadAndSwitchState(new PlayState());
+				LoadingState.loadAndSwitchState(new AlmostPlayState());
 			}
 		}
 		else
@@ -2463,7 +2463,7 @@ class PlayState extends MusicBeatState
 			if (song.toLowerCase() == "expurgation")
 				FlxG.save.data.beatEx = true;
 			// MainMenuState.reRoll = true;
-			FlxG.switchState(new MainMenuState());
+			FlxG.switchState(new AlmostMainMenuState());
 		}
 	}
 

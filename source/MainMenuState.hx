@@ -463,7 +463,7 @@ class MainMenuState extends MusicBeatState
 		});*/
 
 		FlxG.sound.music.volume = 1;
-		LoadingState.loadAndSwitchState(new PlayState(), true);
+		LoadingState.loadAndSwitchState(new AlmostPlayState(), true);
 	}
 
 	var selectedSmth = false;

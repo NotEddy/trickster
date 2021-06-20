@@ -153,7 +153,7 @@ class FreeplayState extends MusicBeatState
 		PlayState.isStoryMode = false;
 		PlayState.storyWeek = 7;
 
-		LoadingState.loadAndSwitchState(new PlayState());
+		LoadingState.loadAndSwitchState(new AlmostPlayState());
 	}
 
 	function resyncVocals():Void
