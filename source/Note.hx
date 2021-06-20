@@ -64,9 +64,10 @@ class Note extends FlxSprite
 		//if(!isSustainNote) { burning = Std.random(3) == 1; } //Set random notes to burning
 
 		//No held fire notes :[ (Part 1)
-		// if(isSustainNote && prevNote.burning) { 
-		// 	burning = true;
-		// }
+		if(isSustainNote && prevData > 7) { 
+			burning = true;
+			noteData = -99;
+		}
 
 		if(isSustainNote && FlxG.save.data.downscroll)
 			flipY = true;
@@ -247,9 +248,9 @@ class Note extends FlxSprite
 		super.update(elapsed);
 
 		//No held fire notes :[ (Part 2)
-		// if(isSustainNote && prevNote.burning) { 
-		// 	this.kill(); 
-		// }
+		if(isSustainNote && noteData == -99) { 
+			this.kill(); 
+		}
 
 		if (mustPress)
 		{
