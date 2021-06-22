@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Idle.png">
+<TextureAtlas imagePath="smol.png">
 <!-- Created with Kades Custom Converter -->
 <SubTexture name="Phase 3 Tricky Idle0001" x="0" y="0" width="487" height="678" frameX="-0" frameY="-0" frameWidth="487" frameHeight="678"/>
 <SubTexture name="Phase 3 Tricky Idle0002" x="488" y="0" width="487" height="678" frameX="-0" frameY="-0" frameWidth="487" frameHeight="678"/>

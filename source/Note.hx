@@ -102,13 +102,13 @@ class Note extends FlxSprite
 
 				if(burning){
 					
-					loadGraphic(Paths.image('NOTE_fire-pixel_alt', "clown"));
+					loadGraphic(Paths.image('NOTE_fire-pixel', "clown"));
 					
-					// animation.add('greenScroll', [6, 7, 6, 8], 8);
-					// animation.add('redScroll', [9, 10, 9, 11], 8);
-					// animation.add('blueScroll', [3, 4, 3, 5], 8);
-					// animation.add('purpleScroll', [0, 1 ,0, 2], 8);
-					// x -= 15;
+					animation.add('greenScroll', [6, 7, 6, 8], 8);
+					animation.add('redScroll', [9, 10, 9, 11], 8);
+					animation.add('blueScroll', [3, 4, 3, 5], 8);
+					animation.add('purpleScroll', [0, 1 ,0, 2], 8);
+					x -= 15;
 
 				}
 
@@ -142,7 +142,7 @@ class Note extends FlxSprite
 						animation.addByPrefix('blueScroll', 'Blue Arrow');
 						animation.addByPrefix('purpleScroll', 'Purple Arrow');
 						x -= 165;*/
-						frames = Paths.getSparrowAtlas('NOTE_fire_alt', "clown");
+						loadGraphic(Paths.image('NOTE_fire_alt2', 'clown'));
 					}
 					else
 					{
@@ -162,7 +162,7 @@ class Note extends FlxSprite
 							flipY = true;
 
 						x -= 50;*/
-						frames = Paths.getSparrowAtlas('NOTE_fire_alt', "clown");
+						loadGraphic(Paths.image('NOTE_fire_alt', 'clown'));
 					}
 				}
 

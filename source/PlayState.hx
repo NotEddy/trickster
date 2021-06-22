@@ -347,6 +347,7 @@ class PlayState extends MusicBeatState
 			bg.updateHitbox();
 			bg.setGraphicSize(Std.int(bg.width * 5));
 			bg.active = false;
+			bg.graphic.dump();
 			add(bg);
 
 			var stageFront:FlxSprite = new FlxSprite(-2000, -400).loadGraphic(Paths.image('hellclwn/island_but_red', 'clown'));
@@ -356,6 +357,7 @@ class PlayState extends MusicBeatState
 			stageFront.antialiasing = true;
 			stageFront.scrollFactor.set(0.9, 0.9);
 			stageFront.active = false;
+			stageFront.graphic.dump();
 			add(stageFront);
 
 			hank = new FlxSprite(60, -170);
@@ -367,7 +369,7 @@ class PlayState extends MusicBeatState
 			hank.scrollFactor.set(0.9, 0.9);
 			hank.setGraphicSize(Std.int(hank.width * 1.55));
 			hank.antialiasing = true;
-
+			hank.graphic.dump();
 			add(hank);
 		}
 		else if (SONG.song.toLowerCase() == 'expurgation')
@@ -391,12 +393,14 @@ class PlayState extends MusicBeatState
 			bg.setGraphicSize(Std.int(bg.width * 2));
 			bg.updateHitbox();
 			bg.setGraphicSize(Std.int(bg.width * 4));
+			bg.graphic.dump();
 			add(bg);
 
 			hole.antialiasing = true;
 			hole.scrollFactor.set(0.9, 0.9);
 			hole.setGraphicSize(Std.int(hole.width * 2));
 			hole.updateHitbox();
+			hole.graphic.dump();
 
 			converHole.antialiasing = true;
 			converHole.scrollFactor.set(0.9, 0.9);
@@ -404,18 +408,21 @@ class PlayState extends MusicBeatState
 			converHole.updateHitbox();
 			converHole.setGraphicSize(Std.int(converHole.width * 1.3));
 			hole.setGraphicSize(Std.int(hole.width * 1.55));
+			converHole.graphic.dump();
 
 			cover.antialiasing = true;
 			cover.scrollFactor.set(0.9, 0.9);
 			cover.setGraphicSize(Std.int(cover.width * 2));
 			cover.updateHitbox();
 			cover.setGraphicSize(Std.int(cover.width * 1.55));
+			cover.graphic.dump();
 
 			var energyWall:FlxSprite = new FlxSprite(1350, -690).loadGraphic(Paths.image("fourth/Energywall", "clown"));
 			energyWall.antialiasing = true;
 			energyWall.setGraphicSize(Std.int(energyWall.width * 2));
 			energyWall.updateHitbox();
 			energyWall.scrollFactor.set(0.9, 0.9);
+			energyWall.graphic.dump();
 			add(energyWall);
 
 			var stageFront:FlxSprite = new FlxSprite(-350, -355).loadGraphic(Paths.image('fourth/daBackground', 'clown'));
@@ -424,6 +431,7 @@ class PlayState extends MusicBeatState
 			stageFront.setGraphicSize(Std.int(stageFront.width * 2));
 			stageFront.updateHitbox();
 			stageFront.setGraphicSize(Std.int(stageFront.width * 1.55));
+			stageFront.graphic.dump();
 			add(stageFront);
 		}
 		else
@@ -465,10 +473,13 @@ class PlayState extends MusicBeatState
 		}
 
 		gf.doCrap(400, 130, gfVersion);
+		gf.graphic.dump();
 		gf.scrollFactor.set(0.95, 0.95);
 
 		// dad = new Character(100, 100, SONG.player2);
 		dad.doCrap(100, 100, SONG.player2);
+		dad.graphic.dump();
+		dad.visible = true;
 
 		// var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 		var dadFlxPoint:FlxPoint = dad.getGraphicMidpoint();
@@ -498,10 +509,10 @@ class PlayState extends MusicBeatState
 				gf.x -= 120;
 				gf.y += 180;
 			case 'exTricky':
-				dad.x -= 250;
-				dad.y -= 365;
-				gf.x += 345;
-				gf.y -= 25;
+				//dad.x -= 250;
+				dad.y -= 365 - 100;
+				gf.x += 345 + 100;
+				gf.y -= 25 - 50;
 				dad.visible = false;
 		}
 
@@ -515,6 +526,7 @@ class PlayState extends MusicBeatState
 
 		// boyfriend = new Boyfriend(770, 450, bfVersion);
 		boyfriend.doCrap(770, 450, bfVersion, true);
+		boyfriend.graphic.dump();
 		boyfriend.stunned = false;
 
 		// REPOSITIONING PER STAGE
@@ -528,7 +540,7 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 120;
 			case 'auditorHell':
 				boyfriend.y -= 160;
-				boyfriend.x += 350;
+				boyfriend.x += 350 + 50;
 		}
 
 		add(gf);
@@ -557,7 +569,9 @@ class PlayState extends MusicBeatState
 			// cover crap
 
 			add(cloneOne);
+			cloneOne.graphic.dump();
 			add(cloneTwo);
+			cloneTwo.graphic.dump();
 			add(cover);
 			add(converHole);
 			add(dad.exSpikes);
@@ -987,8 +1001,8 @@ class PlayState extends MusicBeatState
 			case 0:
 				if (cloneOne.alpha == 1)
 					return;
-				cloneOne.x = dad.x - 20;
-				cloneOne.y = dad.y + 140;
+				cloneOne.x = dad.x - 20 - 250;
+				cloneOne.y = dad.y + 140 - 100;
 				cloneOne.alpha = 1;
 
 				cloneOne.animation.play('clone');
@@ -999,8 +1013,8 @@ class PlayState extends MusicBeatState
 			case 1:
 				if (cloneTwo.alpha == 1)
 					return;
-				cloneTwo.x = dad.x + 390;
-				cloneTwo.y = dad.y + 140;
+				cloneTwo.x = dad.x + 390 - 250;
+				cloneTwo.y = dad.y + 140 - 100;
 				cloneTwo.alpha = 1;
 
 				cloneTwo.animation.play('clone');
