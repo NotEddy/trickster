@@ -42,6 +42,14 @@ class OptionsMenu extends MusicBeatState
 		
 		new OptionCatagory("Misc", [
 			new FPSOption("Toggle the FPS Counter")
+		]),
+
+		new OptionCatagory("Performance", [
+			new PerfStaticOption(""),
+			new PerfSkullOption(""),
+			new PerfMenuCharOption(""),
+			new PerfCutscenes(""),
+			new PerfUltraLowOption("")
 		])
 		
 	];
@@ -82,7 +90,7 @@ class OptionsMenu extends MusicBeatState
 
 			var text:FlxText = new FlxText(125,(95 * i) + 100, 0, option.getName(),34);
 			text.color = FlxColor.fromRGB(255,0,0);
-			text.setFormat("tahoma-bold.ttf", 60, FlxColor.RED);
+			text.setFormat("tahoma-bold.ttf", 50, FlxColor.RED);
 			add(text);
 			currentOptions.push(text);
 
@@ -148,7 +156,7 @@ class OptionsMenu extends MusicBeatState
 					
 						var text:FlxText = new FlxText(125,(95 * i) + 100, 0, option.getName(),34);
 						text.color = FlxColor.fromRGB(255,0,0);
-						text.setFormat("tahoma-bold.ttf", 60, FlxColor.RED);
+						text.setFormat("tahoma-bold.ttf", 50, FlxColor.RED);
 						add(text);
 						currentOptions.push(text);
 					}
@@ -253,7 +261,7 @@ class OptionsMenu extends MusicBeatState
 
 								var text:FlxText = new FlxText(125,(95 * i) + 100, 0, option.getDisplay(),34);
 								text.color = FlxColor.fromRGB(255,0,0);
-								text.setFormat("tahoma-bold.ttf", 60, FlxColor.RED);
+								text.setFormat("tahoma-bold.ttf", 50, FlxColor.RED);
 								add(text);
 								currentOptions.push(text);
 							}
@@ -279,7 +287,7 @@ class OptionsMenu extends MusicBeatState
 
 							var text:FlxText = new FlxText(125,(95 * i) + 100, 0, option.getDisplay(),34);
 							text.color = FlxColor.fromRGB(255,0,0);
-							text.setFormat("tahoma-bold.ttf", 60, FlxColor.RED);
+							text.setFormat("tahoma-bold.ttf", 50, FlxColor.RED);
 							add(text);
 							currentOptions.push(text);
 						}

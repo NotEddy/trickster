@@ -78,6 +78,21 @@ class KadeEngineData
 		if (FlxG.save.data.beatEx == null)
 			FlxG.save.data.beatEx = false;
 
+		if (FlxG.save.data.perfStatic == null)
+			FlxG.save.data.perfStatic = false;
+
+		if (FlxG.save.data.perfSkull == null)
+			FlxG.save.data.perfSkull = true;
+
+		if (FlxG.save.data.perfMenuChar == null)
+			FlxG.save.data.perfMenuChar = false;
+
+		if (FlxG.save.data.perfCutscenes == null)
+			FlxG.save.data.perfCutscenes = false;
+
+		if (FlxG.save.data.perfUltraLow == null)
+			FlxG.save.data.perfUltraLow = false;
+
 		Conductor.recalculateTimings();
 
 		KeyBinds.keyCheck();
