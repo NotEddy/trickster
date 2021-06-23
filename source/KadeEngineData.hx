@@ -93,6 +93,9 @@ class KadeEngineData
 		if (FlxG.save.data.perfUltraLow == null)
 			FlxG.save.data.perfUltraLow = false;
 
+		if (FlxG.save.data.notePixel == null)
+			FlxG.save.data.notePixel = false;
+
 		Conductor.recalculateTimings();
 
 		KeyBinds.keyCheck();

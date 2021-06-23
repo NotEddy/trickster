@@ -200,7 +200,7 @@ class PlayState extends MusicBeatState
 			FlxDestroyUtil.destroy(spookyText);
 		}
 
-		if (Main.ultraLow)
+		if (Main.ultraLow || FlxG.save.data.notePixel)
 			pixelOnly = true;
 		else
 			pixelOnly = false;
@@ -2109,46 +2109,46 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new ChartingState());
 		}
 
-		if (FlxG.keys.justPressed.ONE)
-		{
-			endSong();
-		}
-		if (FlxG.keys.justPressed.TWO)
-		{
-			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.ONE)
+		// {
+		// 	endSong();
+		// }
+		// if (FlxG.keys.justPressed.TWO)
+		// {
+		// 	LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		// }
 
-		if (FlxG.keys.justPressed.THREE)
-		{
-			health = 0;
-		}
+		// if (FlxG.keys.justPressed.THREE)
+		// {
+		// 	health = 0;
+		// }
 
-		if (FlxG.keys.justPressed.U)
-		{
-			PlayState.SONG = Song.loadFromJson("improbable-outset-hard", "improbable-outset");
-			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.U)
+		// {
+		// 	PlayState.SONG = Song.loadFromJson("improbable-outset-hard", "improbable-outset");
+		// 	LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		// }
 
-		if (FlxG.keys.justPressed.I)
-		{
-			PlayState.SONG = Song.loadFromJson("madness-hard", "madness");
-			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.I)
+		// {
+		// 	PlayState.SONG = Song.loadFromJson("madness-hard", "madness");
+		// 	LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		// }
 
-		if (FlxG.keys.justPressed.O)
-		{
-			PlayState.SONG = Song.loadFromJson("hellclown-hard", "hellclown");
-			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.O)
+		// {
+		// 	PlayState.SONG = Song.loadFromJson("hellclown-hard", "hellclown");
+		// 	LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		// }
 
-		if (FlxG.keys.justPressed.P)
-		{
-			PlayState.SONG = Song.loadFromJson("expurgation-hard", "expurgation");
-			LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
-		}
+		// if (FlxG.keys.justPressed.P)
+		// {
+		// 	PlayState.SONG = Song.loadFromJson("expurgation-hard", "expurgation");
+		// 	LoadingState.loadAndSwitchState(new AlmostPlayState(), false);
+		// }
 
-		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
-		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
+		// if (FlxG.keys.justPressed.M)
+		// 	trickySecondCutscene();
 
 		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
 		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50)));
@@ -2486,9 +2486,7 @@ class PlayState extends MusicBeatState
 		if (!inCutscene)
 			keyShit();
 
-		
-		if (FlxG.keys.justPressed.M)
-			trickySecondCutscene();
+	
 		 
 	}
 

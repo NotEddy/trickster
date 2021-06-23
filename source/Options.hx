@@ -506,3 +506,24 @@ class PerfUltraLowOption extends Option
 		return "Ultra Low-End (Requires Restart): " + (FlxG.save.data.perfUltraLow == 0 ? "off" : "on");
 	}
 }
+
+class NotePixelOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.notePixel = FlxG.save.data.notePixel == 1 ? 0 : 1;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Pixel Note Skin: " + (FlxG.save.data.notePixel == 0 ? "off" : "on");
+	}
+}
