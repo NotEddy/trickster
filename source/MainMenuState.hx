@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxDestroyUtil;
 import flixel.FlxState;
 import openfl.text.TextFormatAlign;
 import flixel.util.FlxColor;
@@ -16,18 +17,22 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	// var slider:FlxBackdrop;
-	// public static var killed:Bool = false;
+	var slider:FlxBackdrop;
+
+	public static var killed:Bool = false;
+
 	var show:String = "";
 
-	// var hand:FlxSprite;
-	// var shower:FlxSprite;
+	var hand:FlxSprite;
+	var shower:FlxSprite;
+
 	public var curDifficulty:Int = 2;
 	// public static var trans:FlxSprite;
 	public var diffSelectedIndex = 2;
 
 	public var lastRoll:String = "bf";
-	public var reRoll:Bool = true;
+
+	public static var reRoll:Bool = true;
 
 	var clownButton:TrickyButton;
 
@@ -47,7 +52,7 @@ class MainMenuState extends MusicBeatState
 		listOfButtons = [
 			new TrickyButton(800, 160, 'menu/Clown Mode Button', 'menu/Clown Mode Button CONFIRM', playStory, 'clown', 0, -40),
 			new TrickyButton(1010, 165, 'menu/FreePlayButton', 'menu/FreePlayButton CONFIRM', goToFreeplay, "free", 0, -40),
-			//new TrickyButton(925, 265, 'menu/MUSIC Button', 'menu/MUSIC button confirm', goToMusic),
+			// new TrickyButton(925, 265, 'menu/MUSIC Button', 'menu/MUSIC button confirm', goToMusic),
 			new TrickyButton(685, 330, 'menu/DIFFICULTY', 'menu/DIFFICULTY CONFIRM', startDiffSelect),
 			new TrickyButton(975, 460, 'menu/OPTIONS Button', 'menu/OPTIONS Button CONFIRM', goToOptions, "options", 0, 45)
 		];
@@ -84,12 +89,21 @@ class MainMenuState extends MusicBeatState
 		var foreground:FlxSprite = new FlxSprite(-750, 110).loadGraphic(Paths.image('menu/Transforeground', 'clown'));
 		foreground.setGraphicSize(Std.int(foreground.width * 0.65));
 		add(foreground);
-		/*slider = new FlxBackdrop(Paths.image('menu/MenuSlider','clown'),1,0,true,false);
-			slider.velocity.set(-14,0);
+		if (FlxG.save.data.perfMenuChar)
+		{
+			slider = new FlxBackdrop(Paths.image('menu/MenuSlider', 'clown'), 1, 0, true, false);
+			slider.velocity.set(-14, 0);
 			slider.x = -20;
 			slider.y = 209;
 			slider.setGraphicSize(Std.int(slider.width * 0.65));
-			add(slider); */
+			add(slider);
+		}
+		else
+		{
+			FlxDestroyUtil.destroy(slider);
+			FlxDestroyUtil.destroy(hand);
+			FlxDestroyUtil.destroy(shower);
+		}
 
 		// figure out who the fuck do I show lol
 		// also THIS IS BAD
@@ -115,128 +129,157 @@ class MainMenuState extends MusicBeatState
 				show = 'mag';
 			if (random > 9800)
 				show = 'sus';
-			// killed = false;
+			killed = false;
 			lastRoll = show;
 			trace('random ' + random + ' im showin ' + show);
 		}
 		else
 			show = lastRoll;
 
-		// shower = new FlxSprite(200,280);
+		if (FlxG.save.data.perfMenuChar)
+			shower = new FlxSprite(200, 280);
 
 		Conductor.changeBPM(165);
 
 		switch (show)
 		{
 			case 'bf':
-				// shower.frames = Paths.getSparrowAtlas("menu/MenuBF/MenuBF","clown");
-				// shower.animation.addByPrefix('idle','BF idle menu');
-				// shower.flipX = true;
+				if (FlxG.save.data.perfMenuChar)
+				{
+					shower.frames = Paths.getSparrowAtlas("menu/MenuBF/MenuBF", "clown");
+					shower.animation.addByPrefix('idle', 'BF idle menu');
+					shower.flipX = true;
+					shower.setGraphicSize(Std.int(shower.width * 0.76));
+				}
 				if (!FlxG.sound.music.playing)
 					FlxG.sound.playMusic(Paths.music("nexus_bf", "clown"), 0);
-				// shower.setGraphicSize(Std.int(shower.width * 0.76));
 
 				lines.push('THE KID IS WEAK...');
 
 			case 'tricky':
-				// shower.frames = Paths.getSparrowAtlas("menu/MenuTricky/MenuTricky","clown");
-				// shower.animation.addByPrefix('idle','menutricky');
-				// shower.y -= 155;
-				// shower.x -= 120;
+				if (FlxG.save.data.perfMenuChar)
+				{
+					shower.frames = Paths.getSparrowAtlas("menu/MenuTricky/MenuTricky", "clown");
+					shower.animation.addByPrefix('idle', 'menutricky');
+					shower.y -= 155;
+					shower.x -= 120;
+					shower.setGraphicSize(Std.int(shower.width * 0.76));
+				}
 				if (!FlxG.sound.music.playing)
 					FlxG.sound.playMusic(Paths.music("nexus_tricky", "clown"), 0);
-				// shower.setGraphicSize(Std.int(shower.width * 0.76));
 
 				lines.push('MY LESSER FORM...');
 			case 'sus':
-				// FlxG.mouse.visible = true;
-				// shower.frames = Paths.getSparrowAtlas("menu/Sus/Menu_ALLSUS","clown");
-				// shower.animation.addByPrefix('idle','AmongUsIDLE', 24);
-				// shower.animation.addByPrefix('death','AMONG DEATH', 24, false);
-				// shower.animation.addByIndices('deathPost','AMONG DEATH', [5], "", 24, false);
-				// shower.animation.addByPrefix('no','AmongUs NuhUh', 24, false);
+				if (FlxG.save.data.perfMenuChar)
+				{
+					FlxG.mouse.visible = true;
+					shower.frames = Paths.getSparrowAtlas("menu/Sus/Menu_ALLSUS", "clown");
+					shower.animation.addByPrefix('idle', 'AmongUsIDLE', 24);
+					shower.animation.addByPrefix('death', 'AMONG DEATH', 24, false);
+					shower.animation.addByIndices('deathPost', 'AMONG DEATH', [5], "", 24, false);
+					shower.animation.addByPrefix('no', 'AmongUs NuhUh', 24, false);
+					shower.setGraphicSize(Std.int(shower.width * 0.76));
+
+					shower.y += 35;
+
+					hand = new FlxSprite(shower.x + 75, shower.y + 50).loadGraphic(Paths.image('menu/Sus/AmongHand', 'clown'));
+					hand.setGraphicSize(Std.int(hand.width * 0.67));
+					hand.antialiasing = true;
+					hand.alpha = 0;
+				}
 				if (!FlxG.sound.music.playing)
 					FlxG.sound.playMusic(Paths.music("nexus_sussy", "clown"), 0);
-				// shower.setGraphicSize(Std.int(shower.width * 0.76));
-
-				// shower.y += 35;
-
-				// hand = new FlxSprite(shower.x + 75,shower.y + 50).loadGraphic(Paths.image('menu/Sus/AmongHand','clown'));
-				// hand.setGraphicSize(Std.int(hand.width * 0.67));
-				// hand.antialiasing = true;
-				// hand.alpha = 0;
 
 				lines.push('A DESPICABLE THING LURKS HERE');
 
 			case 'jebus':
-				// shower.frames = Paths.getSparrowAtlas("menu/Jebus/Menu_jebus","clown");
-				// shower.animation.addByPrefix('idle','Jebus');
-				// shower.y -= 240;
-				// shower.x -= 145;
+				if (FlxG.save.data.perfMenuChar)
+				{
+					shower.frames = Paths.getSparrowAtlas("menu/Jebus/Menu_jebus", "clown");
+					shower.animation.addByPrefix('idle', 'Jebus');
+					shower.y -= 240;
+					shower.x -= 145;
+					shower.setGraphicSize(Std.int(shower.width * 0.66));
+				}
 				if (!FlxG.sound.music.playing)
 					FlxG.sound.playMusic(Paths.music("nexus_jebus", "clown"), 0);
-				// shower.setGraphicSize(Std.int(shower.width * 0.66));
 
 				lines.push('HE CAUSED THIS');
 
 			case 'hank':
-				// shower.frames = Paths.getSparrowAtlas("menu/Hank/Hank_Menu","clown");
-				// shower.animation.addByPrefix('idle','Hank');
-				// shower.y -= 240;
-				// shower.x -= 180;
+				if (FlxG.save.data.perfMenuChar)
+				{
+					shower.frames = Paths.getSparrowAtlas("menu/Hank/Hank_Menu", "clown");
+					shower.animation.addByPrefix('idle', 'Hank');
+					shower.y -= 240;
+					shower.x -= 180;
+					shower.setGraphicSize(Std.int(shower.width * 0.63));
+				}
 				if (!FlxG.sound.music.playing)
 					FlxG.sound.playMusic(Paths.music("nexus_hank", "clown"), 0);
-				// shower.setGraphicSize(Std.int(shower.width * 0.63));
 
 				lines.push('WEAK FLESH');
 
 			case 'deimos':
-				// shower.frames = Paths.getSparrowAtlas("menu/Deimos/Deimos_Menu","clown");
-				// shower.animation.addByPrefix('idle','Deimos');
+				if (FlxG.save.data.perfMenuChar)
+				{
+					shower.frames = Paths.getSparrowAtlas("menu/Deimos/Deimos_Menu", "clown");
+					shower.animation.addByPrefix('idle', 'Deimos');
+					shower.setGraphicSize(Std.int(shower.width * 0.68));
+					shower.y -= 65;
+					shower.x -= 145;
+					shower.angle = -8;
+				}
 				if (!FlxG.sound.music.playing)
 					FlxG.sound.playMusic(Paths.music("nexus_deimos", "clown"), 0);
-				// shower.setGraphicSize(Std.int(shower.width * 0.68));
-				// shower.y -= 65;
-				// shower.x -= 145;
-				// shower.angle = -8;
 
 				lines.push('ROCK UPGRADGE... INTERESTING');
 
 			case 'auditor':
-				// shower.frames = Paths.getSparrowAtlas("menu/Auditor/Auditor","clown");
-				// shower.animation.addByPrefix('idle','Auditor');
+				if (FlxG.save.data.perfMenuChar)
+				{
+					shower.frames = Paths.getSparrowAtlas("menu/Auditor/Auditor", "clown");
+					shower.animation.addByPrefix('idle', 'Auditor');
+					shower.y -= 300;
+					shower.x -= 200;
+					shower.setGraphicSize(Std.int(shower.width * 0.76));
+				}
 				if (!FlxG.sound.music.playing)
 					FlxG.sound.playMusic(Paths.music("nexus_auditor", "clown"), 0);
-				// shower.y -= 300;
-				// shower.x -= 200;
-				// shower.setGraphicSize(Std.int(shower.width * 0.76));
 
 				lines.push('I HAVE NOTHING TO SAY...');
 
 			case 'mag':
-				// shower.frames = Paths.getSparrowAtlas("menu/Torture/Mag_Agent_Torture_Menu","clown");
-				// shower.animation.addByPrefix('idle','Mag Agent Torture');
+				if (FlxG.save.data.perfMenuChar)
+				{
+					shower.frames = Paths.getSparrowAtlas("menu/Torture/Mag_Agent_Torture_Menu", "clown");
+					shower.animation.addByPrefix('idle', 'Mag Agent Torture');
+					shower.setGraphicSize(Std.int(shower.width * 0.66));
+					shower.y -= 310;
+					shower.x -= 500;
+				}
 				if (!FlxG.sound.music.playing)
 					FlxG.sound.playMusic(Paths.music("nexus_torture", "clown"), 0);
-				// shower.setGraphicSize(Std.int(shower.width * 0.66));
-				// shower.y -= 310;
-				// shower.x -= 500;
 
 				lines.push('AN ABOMINATION');
 
 			case 'sanford':
-				// shower.frames = Paths.getSparrowAtlas("menu/Sanford/Menu_Sanford","clown");
-				// shower.animation.addByPrefix('idle','Sanford');
+				if (FlxG.save.data.perfMenuChar)
+				{
+					shower.frames = Paths.getSparrowAtlas("menu/Sanford/Menu_Sanford", "clown");
+					shower.animation.addByPrefix('idle', 'Sanford');
+					shower.setGraphicSize(Std.int(shower.width * 0.66));
+					shower.y -= 180;
+					shower.x -= 275;
+				}
 				if (!FlxG.sound.music.playing)
 					FlxG.sound.playMusic(Paths.music("nexus_sanford", "clown"), 0);
-				// shower.setGraphicSize(Std.int(shower.width * 0.66));
-				// shower.y -= 180;
-				// shower.x -= 275;
 
 				lines.push('WEAKER THEN THE OTHERS...');
 		}
 
-		// shower.antialiasing = true;
+		if (FlxG.save.data.perfMenuChar)
+			shower.antialiasing = true;
 
 		if (reRoll)
 		{
@@ -244,13 +287,16 @@ class MainMenuState extends MusicBeatState
 			reRoll = false;
 		}
 
-		/*if (show == 'sus' && killed)
+		if (FlxG.save.data.perfMenuChar)
+		{
+			if (show == 'sus' && killed)
 			{
-				shower.offset.set(5,10);
+				shower.offset.set(5, 10);
 				shower.animation.play('deathPost');
 			}
 			else
-				shower.animation.play('idle'); */
+				shower.animation.play('idle');
+		}
 
 		for (i in listOfButtons)
 		{
@@ -262,7 +308,8 @@ class MainMenuState extends MusicBeatState
 			add(i.spriteTwo);
 		}
 
-		// add(shower);
+		if (FlxG.save.data.perfMenuChar)
+			add(shower);
 
 		var bgCover:FlxSprite = new FlxSprite(-455, -327).loadGraphic(Paths.image('menu/BGCover', 'clown'));
 		bgCover.setGraphicSize(Std.int(bgCover.width * 0.7));
@@ -332,8 +379,8 @@ class MainMenuState extends MusicBeatState
 			add(troph);
 		}
 
-		/*if (show == 'sus')
-			add(hand); */
+		if (FlxG.save.data.perfMenuChar && show == 'sus')
+			add(hand);
 
 		var menuShade:FlxSprite = new FlxSprite(-1350, -1190).loadGraphic(Paths.image("menu/Menu Shade", "clown"));
 		menuShade.setGraphicSize(Std.int(menuShade.width * 0.7));
@@ -381,7 +428,7 @@ class MainMenuState extends MusicBeatState
 	{
 		FlxG.mouse.visible = false;
 		curDifficulty = diffSelectedIndex;
-		//FreeplayState.diff = curDifficulty;
+		// FreeplayState.diff = curDifficulty;
 		trace(curDifficulty);
 		FlxG.switchState(new FreeplayState());
 	}
@@ -406,7 +453,6 @@ class MainMenuState extends MusicBeatState
 
 	public function playStory()
 	{
-		
 		FlxG.mouse.visible = false;
 		PlayState.storyPlaylist = ['Improbable Outset', 'Madness', 'Hellclown'];
 		PlayState.isStoryMode = true;
@@ -421,7 +467,6 @@ class MainMenuState extends MusicBeatState
 				diffic = '-hard';
 		}
 
-		
 		PlayState.storyDifficulty = curDifficulty;
 
 		PlayState.SONG = Song.loadFromJson('improbable-outset' + diffic, 'improbable-outset');
@@ -440,7 +485,6 @@ class MainMenuState extends MusicBeatState
 		// trans.alpha = 1;
 		// var snd = new FlxSound().loadEmbedded(Paths.sound('swipe','clown'));
 		// snd.play();
-
 
 		var once = false;
 
@@ -511,14 +555,16 @@ class MainMenuState extends MusicBeatState
 
 	function doHand()
 	{
-		// shower.animation.play('no');
+		if (FlxG.save.data.perfMenuChar)
+			shower.animation.play('no');
 
 		var selected = listOfButtons[selectedIndex].spriteTwo;
 
 		trace(selected.x);
 		trace(selected.y);
 
-		// FlxTween.tween(hand, {alpha: 1, x: selected.x + 10, y: selected.y - 10}, 0.6, {ease: FlxEase.expoInOut});
+		if (FlxG.save.data.perfMenuChar)
+			FlxTween.tween(hand, {alpha: 1, x: selected.x + 10, y: selected.y - 10}, 0.6, {ease: FlxEase.expoInOut});
 	}
 
 	function resyncVocals():Void
@@ -555,7 +601,7 @@ class MainMenuState extends MusicBeatState
 
 					var text = new FlxText(tinyMan.x - 200, tinyMan.y + 285, 0, lines[FlxG.random.int(0, lines.length - 1)]);
 
-					text.setFormat('tahoma-bold.ttf',24,FlxColor.WHITE,FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+					text.setFormat('tahoma-bold.ttf', 24, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 
 					add(text);
 
@@ -581,23 +627,29 @@ class MainMenuState extends MusicBeatState
 			}
 		}
 
-		/*if (show == 'sus' && !killed && shower.animation.finished)
+		if (FlxG.save.data.perfMenuChar)
+		{
+			if (show == 'sus' && !killed && shower.animation.finished)
 				shower.animation.play('idle');
 			else if (show == 'sus' && FlxG.mouse.overlaps(shower) && FlxG.mouse.justPressed && !killed)
 			{
-				shower.offset.set(5,10);
+				shower.offset.set(5, 10);
 				shower.animation.play('death');
 				killed = true;
-				FlxG.sound.play(Paths.sound('AmongUs-Kill','clown'));
+				FlxG.sound.play(Paths.sound('AmongUs-Kill', 'clown'));
 				if (hand.alpha == 1)
-					FlxTween.tween(hand, {y: FlxG.height + 20 + hand.height,angle: 125, alpha: 0}, 5, {ease: FlxEase.expoOut});
-		}*/
+					FlxTween.tween(hand, {y: FlxG.height + 20 + hand.height, angle: 125, alpha: 0}, 5, {ease: FlxEase.expoOut});
+			}
+		}
 		if (!selectingDiff)
 		{
 			if (FlxG.keys.justPressed.RIGHT)
 			{
-				// if (show == 'sus' && !killed && hand.alpha == 1)
-				// 	FlxTween.tween(hand, {alpha: 0, x: shower.x + 60, y: shower.y + 60}, 0.6, {ease: FlxEase.expoInOut});
+				if (FlxG.save.data.perfMenuChar)
+				{
+					if (show == 'sus' && !killed && hand.alpha == 1)
+						FlxTween.tween(hand, {alpha: 0, x: shower.x + 60, y: shower.y + 60}, 0.6, {ease: FlxEase.expoInOut});
+				}
 				if (selectedIndex + 1 < listOfButtons.length)
 				{
 					listOfButtons[selectedIndex].unHighlight();
@@ -619,8 +671,11 @@ class MainMenuState extends MusicBeatState
 			}
 			if (FlxG.keys.justPressed.LEFT)
 			{
-				// if (show == 'sus' && !killed && hand.alpha == 1)
-				// 	FlxTween.tween(hand, {alpha: 0, x: shower.x + 60, y: shower.y + 60}, 0.6, {ease: FlxEase.expoInOut});
+				if (FlxG.save.data.perfMenuChar)
+				{
+					if (show == 'sus' && !killed && hand.alpha == 1)
+						FlxTween.tween(hand, {alpha: 0, x: shower.x + 60, y: shower.y + 60}, 0.6, {ease: FlxEase.expoInOut});
+				}
 				if (selectedIndex > 0)
 				{
 					listOfButtons[selectedIndex].unHighlight();
@@ -643,11 +698,11 @@ class MainMenuState extends MusicBeatState
 
 			if (FlxG.keys.justPressed.ENTER && !selectedSmth)
 			{
-				/*if (show == 'sus' && !killed)
-					{
-						doHand();
-						return;
-				}*/
+				if (FlxG.save.data.perfMenuChar && show == 'sus' && !killed)
+				{
+					doHand();
+					return;
+				}
 				selectedSmth = true;
 				if (listOfButtons[selectedIndex].pognt == 'clown')
 					transOut = null;
@@ -700,13 +755,13 @@ class MainMenuState extends MusicBeatState
 
 	override function beatHit()
 	{
-		// shower.animation.play('idle');
+		if (FlxG.save.data.perfMenuChar)
+			shower.animation.play('idle');
 		super.beatHit();
 	}
 
 	// override function switchTo(nextState:FlxState):Bool
 	// {
-		
 	// 	openfl.Assets.cache.clear();
 	// 	Main.clearMemoryHopefully();
 	// 	return super.switchTo(nextState);
@@ -714,9 +769,7 @@ class MainMenuState extends MusicBeatState
 
 	override function destroy()
 	{
-
 		super.destroy();
 		Main.clearMemoryHopefully();
 	}
-	
 }

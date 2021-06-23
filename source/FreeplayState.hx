@@ -180,7 +180,7 @@ class FreeplayState extends MusicBeatState
 
 		var score = Highscore.getScore(songs[selectedIndex].pognt, diff);
 		if (songs[selectedIndex].pognt == 'expurgation')
-			score = Highscore.getScore(songs[selectedIndex].pognt, 2);
+			score = Highscore.getScore('Expurgation', 2);
 		diffAndScore.text = diffGet() + " - " + score;
 
 		if (FlxG.keys.justPressed.ESCAPE && !selectedSmth)

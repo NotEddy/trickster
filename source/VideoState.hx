@@ -1,5 +1,5 @@
+import flixel.addons.ui.FlxUIState;
 #if (!hl)
-package;
 
 import flixel.FlxState;
 import flixel.FlxG;
@@ -18,7 +18,7 @@ import openfl.Lib;
 
 using StringTools;
 
-class VideoState extends MusicBeatState
+class VideoState extends FlxUIState
 {
 	public var leSource:String = "";
 	public var transClass:FlxState;
@@ -33,6 +33,11 @@ class VideoState extends MusicBeatState
 	public var defaultText:String = "";
 	public var doShit:Bool = false;
 	public var pauseText:String = "Press P To Pause/Unpause";
+
+	private var controls(get, never):Controls;
+
+	inline function get_controls():Controls
+		return PlayerSettings.player1.controls;
 
 	public function new(source:String, toTrans:FlxState)
 	{

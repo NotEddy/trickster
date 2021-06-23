@@ -78,7 +78,7 @@ class Note extends FlxSprite
 		switch (PlayState.pixelOnly)
 		{
 			case true:
-				loadGraphic(Paths.image('arrows-pixels'), true, 17, 17);
+				loadGraphic(Paths.image('pixel/arrows-pixels'), true, 17, 17);
 
 				animation.add('greenScroll', [6]);
 				animation.add('redScroll', [7]);
@@ -87,7 +87,7 @@ class Note extends FlxSprite
 
 				if (isSustainNote)
 				{
-					loadGraphic(Paths.image('arrowEnds'), true, 7, 6);
+					loadGraphic(Paths.image('pixel/arrowEnds'), true, 7, 6);
 
 					animation.add('purpleholdend', [4]);
 					animation.add('greenholdend', [6]);
@@ -102,12 +102,22 @@ class Note extends FlxSprite
 
 				if (burning)
 				{
-					loadGraphic(Paths.image('NOTE_fire-pixel', "clown"));
-
-					animation.add('greenScroll', [6, 7, 6, 8], 8);
+					loadGraphic(Paths.image('NOTE_fire-pixel', "clown"), true, 21, 31);
 					animation.add('redScroll', [9, 10, 9, 11], 8);
-					animation.add('blueScroll', [3, 4, 3, 5], 8);
 					animation.add('purpleScroll', [0, 1, 0, 2], 8);
+					if (!FlxG.save.data.downscroll)
+					{
+						animation.add('greenScroll', [6, 7, 6, 8], 8);
+						animation.add('blueScroll', [3, 4, 3, 5], 8);
+					}
+					else
+					{
+						animation.add('blueScroll', [6, 7, 6, 8], 8);
+						animation.add('greenScroll', [3, 4, 3, 5], 8);
+					}
+					
+					if (FlxG.save.data.downscroll)
+						flipY = true;
 					x -= 15;
 				}
 
@@ -181,7 +191,7 @@ class Note extends FlxSprite
 				antialiasing = true;
 		}
 
-		if (!FlxG.save.data.perfSkull && burning)
+		if ((!FlxG.save.data.perfSkull || PlayState.pixelOnly) && burning)
 			setGraphicSize(Std.int(width * 0.86));
 
 		switch (noteData)

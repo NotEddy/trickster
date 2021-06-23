@@ -133,7 +133,7 @@ class PauseSubState extends MusicBeatSubstate
 				// daSong = null;
 				case "Exit to menu":
 					// PlayState.loadRep = false;
-					// MainMenuState.reRoll = true;
+					MainMenuState.reRoll = true;
 					// clearCache();
 					// daSong = null;
 					// CachedFrames.cachedInstance.clear();

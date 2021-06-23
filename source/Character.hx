@@ -45,6 +45,8 @@ class Character extends FlxSprite
 
 		switch (curCharacter)
 		{
+			case 'nothing':
+				loadGraphic(Paths.image('nothing', 'clown'));
 			case 'gf':
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('GF_assets');
@@ -155,8 +157,20 @@ class Character extends FlxSprite
 				playAnim('idle');
 				
 			case 'trickyH':
-				tex = Paths.getSparrowAtlas('hellclwn/Tricky/smol','clown');
-				frames = tex;
+				if (FlxG.save.data.perfUltraLow)
+				{
+					tex = Paths.getSparrowAtlas('hellclwn/Tricky/evensmoller','clown');
+					frames = tex;
+					scale.x = scale.y = 2.0;
+					updateHitbox();
+					x = posx;
+					y = posy;
+				}
+				else
+				{
+					tex = Paths.getSparrowAtlas('hellclwn/Tricky/smol','clown');
+					frames = tex;
+				}
 				setGraphicSize(Std.int(width * 4));
 				updateHitbox();
 				animation.addByPrefix('idle', 'Phase 3 Tricky Idle', 24);
@@ -396,13 +410,18 @@ class Character extends FlxSprite
 				frames = Paths.getSparrowAtlas('fourth/EXTRICKY','clown');
 				setGraphicSize(Std.int(width * 2));
 				updateHitbox();
-				exSpikes = new FlxSprite(x - 350,y - 170);
-				exSpikes.frames = Paths.getSparrowAtlas('fourth/FloorSpikes','clown');
-				exSpikes.visible = false;
-				exSpikes.setGraphicSize(Std.int(exSpikes.width * 2));
-				exSpikes.updateHitbox();
+				if (!Main.ultraLow)
+				{
+					exSpikes = new FlxSprite(x - 350,y - 170);
+					exSpikes.frames = Paths.getSparrowAtlas('fourth/FloorSpikes','clown');
+					exSpikes.visible = false;
+					exSpikes.setGraphicSize(Std.int(exSpikes.width * 2));
+					exSpikes.updateHitbox();
 
-				exSpikes.animation.addByPrefix('spike','Floor Spikes', 24, false);
+					exSpikes.animation.addByPrefix('spike','Floor Spikes', 24, false);
+				}
+				else
+					exSpikes = new FlxSprite().loadGraphic(Paths.image('nothing', 'clown'));
 
 				animation.addByPrefix('idle', 'Idle', 24);
 				animation.addByPrefix('singUP', 'Sing Up', 24);

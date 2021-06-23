@@ -105,7 +105,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (controls.BACK)
 		{
 			FlxG.sound.music.stop();
-			//MainMenuState.reRoll = true;
+			MainMenuState.reRoll = true;
 			//clearCache();
 			FlxG.switchState(new AlmostMainMenuState());
 			//PlayState.loadRep = false;

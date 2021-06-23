@@ -1,8 +1,8 @@
 package;
 
-// #if (cpp)
-// import webm.WebmPlayer;
-// #end
+#if (cpp)
+import webm.WebmPlayer;
+#end
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -22,6 +22,8 @@ class Main extends Sprite
 	var framerate:Int = 120; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+	public static var canDoCutscene = false;
+	public static var ultraLow = false;
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
@@ -77,27 +79,31 @@ class Main extends Sprite
 		addChild(game);
 
 
-		// var ourSource:String = "assets/videos/DO NOT DELETE OR GAME WILL CRASH/dontDelete.webm";
+		var ourSource:String = "assets/videos/DO NOT DELETE OR GAME WILL CRASH/dontDelete.webm";
         
-        // #if web
-        // var str1:String = "HTML CRAP";
-        // var vHandler = new VideoHandler();
-        // vHandler.init1();
-        // vHandler.video.name = str1;
-        // addChild(vHandler.video);
-        // vHandler.init2();
-        // GlobalVideo.setVid(vHandler);
-        // vHandler.source(ourSource);
-        // #elseif cpp
-		// WebmPlayer.SKIP_STEP_LIMIT = 90; //haxelib git extension-webm https://github.com/ThatRozebudDude/extension-webm
-        // var str1:String = "WEBM SHIT"; 
-        // var webmHandle = new WebmHandler();
-        // webmHandle.source(ourSource);
-        // webmHandle.makePlayer();
-        // webmHandle.webm.name = str1;
-        // addChild(webmHandle.webm);
-        // GlobalVideo.setWebm(webmHandle);
-        // #end 
+        #if web
+        var str1:String = "HTML CRAP";
+        var vHandler = new VideoHandler();
+        vHandler.init1();
+        vHandler.video.name = str1;
+        addChild(vHandler.video);
+        vHandler.init2();
+        GlobalVideo.setVid(vHandler);
+        vHandler.source(ourSource);
+        #elseif cpp
+		if (FlxG.save.data.perfCutscenes && !FlxG.save.data.perfUltraLow)
+		{
+			WebmPlayer.SKIP_STEP_LIMIT = 90; //haxelib git extension-webm https://github.com/ThatRozebudDude/extension-webm
+			var str1:String = "WEBM SHIT"; 
+			var webmHandle = new WebmHandler();
+			webmHandle.source(ourSource);
+			webmHandle.makePlayer();
+			webmHandle.webm.name = str1;
+			addChild(webmHandle.webm);
+			GlobalVideo.setWebm(webmHandle);
+			canDoCutscene = true;
+		}
+        #end 
 
 
 		#if !mobile
@@ -106,6 +112,9 @@ class Main extends Sprite
 		toggleFPS(FlxG.save.data.fps);
 
 		#end
+
+		if (FlxG.save.data.perfUltraLow)
+			ultraLow = true;
 	}
 
 	var game:FlxGame;
