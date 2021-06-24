@@ -41,7 +41,8 @@ class Character extends FlxSprite
 		curCharacter = character;
 		this.isPlayer = isPlayer;
 
-		antialiasing = true;
+		if (!Main.ultraLow)
+			antialiasing = true;
 
 		switch (curCharacter)
 		{
@@ -440,7 +441,8 @@ class Character extends FlxSprite
 				playAnim('idle');
 		}
 
-		antialiasing = true;
+		if (!Main.ultraLow)
+			antialiasing = true;
 
 		dance();
 

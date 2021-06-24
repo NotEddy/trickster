@@ -314,7 +314,8 @@ class PlayState extends MusicBeatState
 
 			if (FlxG.save.data.perfStatic)
 			{
-				tstatic.antialiasing = true;
+				if (!Main.ultraLow)
+					tstatic.antialiasing = true;
 				tstatic.scrollFactor.set(0, 0);
 				tstatic.setGraphicSize(Std.int(tstatic.width * 8.3));
 				tstatic.animation.add('static', [0, 1, 2], 24, true);
@@ -322,14 +323,15 @@ class PlayState extends MusicBeatState
 
 				tstatic.alpha = 0;
 			}
-			
+
 			var bg:FlxSprite;
 			if (!Main.ultraLow)
 			{
 				bg = new FlxSprite(-350, -300).loadGraphic(Paths.image('red', 'clown'));
 				// bg.setGraphicSize(Std.int(bg.width * 2.5));
 				// bg.updateHitbox();
-				bg.antialiasing = true;
+				if (!Main.ultraLow)
+					bg.antialiasing = true;
 				bg.setGraphicSize(Std.int(bg.width * 2));
 				bg.updateHitbox();
 				bg.scrollFactor.set(0.9, 0.9);
@@ -348,7 +350,8 @@ class PlayState extends MusicBeatState
 			stageFront.updateHitbox();
 
 			stageFront.setGraphicSize(Std.int(stageFront.width * 1.4));
-			stageFront.antialiasing = true;
+			if (!Main.ultraLow)
+				stageFront.antialiasing = true;
 			stageFront.scrollFactor.set(0.9, 0.9);
 			stageFront.active = false;
 			add(stageFront);
@@ -374,7 +377,8 @@ class PlayState extends MusicBeatState
 
 			if (FlxG.save.data.perfStatic)
 			{
-				tstatic.antialiasing = true;
+				if (!Main.ultraLow)
+					tstatic.antialiasing = true;
 				tstatic.scrollFactor.set(0, 0);
 				tstatic.setGraphicSize(Std.int(tstatic.width * 10));
 				tstatic.screenCenter(Y);
@@ -402,7 +406,8 @@ class PlayState extends MusicBeatState
 			stageFront.setGraphicSize(Std.int(stageFront.width * 2));
 			stageFront.updateHitbox();
 			stageFront.setGraphicSize(Std.int(stageFront.width * 2.6));
-			stageFront.antialiasing = true;
+			if (!Main.ultraLow)
+				stageFront.antialiasing = true;
 			stageFront.scrollFactor.set(0.9, 0.9);
 			stageFront.active = false;
 			stageFront.graphic.dump();
@@ -433,7 +438,8 @@ class PlayState extends MusicBeatState
 
 			if (FlxG.save.data.perfStatic)
 			{
-				tstatic.antialiasing = true;
+				if (!Main.ultraLow)
+					tstatic.antialiasing = true;
 				tstatic.scrollFactor.set(0, 0);
 				tstatic.setGraphicSize(Std.int(tstatic.width * 8.3));
 				tstatic.animation.add('static', [0, 1, 2], 24, true);
@@ -444,24 +450,26 @@ class PlayState extends MusicBeatState
 
 			if (!Main.ultraLow)
 			{
-			var bg:FlxSprite = new FlxSprite(-10, -10).loadGraphic(Paths.image('fourth/bg', 'clown'));
-			bg.antialiasing = true;
-			bg.scrollFactor.set(0.9, 0.9);
-			bg.active = false;
-			bg.setGraphicSize(Std.int(bg.width * 2));
-			bg.updateHitbox();
-			bg.setGraphicSize(Std.int(bg.width * 4));
-			bg.graphic.dump();
-			add(bg);
+				var bg:FlxSprite = new FlxSprite(-10, -10).loadGraphic(Paths.image('fourth/bg', 'clown'));
+				bg.antialiasing = true;
+				bg.scrollFactor.set(0.9, 0.9);
+				bg.active = false;
+				bg.setGraphicSize(Std.int(bg.width * 2));
+				bg.updateHitbox();
+				bg.setGraphicSize(Std.int(bg.width * 4));
+				bg.graphic.dump();
+				add(bg);
 			}
 
-			hole.antialiasing = true;
+			if (!Main.ultraLow)
+				hole.antialiasing = true;
 			hole.scrollFactor.set(0.9, 0.9);
 			hole.setGraphicSize(Std.int(hole.width * 2));
 			hole.updateHitbox();
 			hole.graphic.dump();
 
-			converHole.antialiasing = true;
+			if (!Main.ultraLow)
+				converHole.antialiasing = true;
 			converHole.scrollFactor.set(0.9, 0.9);
 			converHole.setGraphicSize(Std.int(converHole.width * 2));
 			converHole.updateHitbox();
@@ -469,7 +477,8 @@ class PlayState extends MusicBeatState
 			hole.setGraphicSize(Std.int(hole.width * 1.55));
 			converHole.graphic.dump();
 
-			cover.antialiasing = true;
+			if (!Main.ultraLow)
+				cover.antialiasing = true;
 			cover.scrollFactor.set(0.9, 0.9);
 			cover.setGraphicSize(Std.int(cover.width * 2));
 			cover.updateHitbox();
@@ -478,17 +487,18 @@ class PlayState extends MusicBeatState
 
 			if (!Main.ultraLow)
 			{
-			var energyWall:FlxSprite = new FlxSprite(1350, -690).loadGraphic(Paths.image("fourth/Energywall", "clown"));
-			energyWall.antialiasing = true;
-			energyWall.setGraphicSize(Std.int(energyWall.width * 2));
-			energyWall.updateHitbox();
-			energyWall.scrollFactor.set(0.9, 0.9);
-			energyWall.graphic.dump();
-			add(energyWall);
+				var energyWall:FlxSprite = new FlxSprite(1350, -690).loadGraphic(Paths.image("fourth/Energywall", "clown"));
+				energyWall.antialiasing = true;
+				energyWall.setGraphicSize(Std.int(energyWall.width * 2));
+				energyWall.updateHitbox();
+				energyWall.scrollFactor.set(0.9, 0.9);
+				energyWall.graphic.dump();
+				add(energyWall);
 			}
 
 			var stageFront:FlxSprite = new FlxSprite(-350, -355).loadGraphic(Paths.image('fourth/daBackground', 'clown'));
-			stageFront.antialiasing = true;
+			if (!Main.ultraLow)
+				stageFront.antialiasing = true;
 			stageFront.scrollFactor.set(0.9, 0.9);
 			stageFront.setGraphicSize(Std.int(stageFront.width * 2));
 			stageFront.updateHitbox();
@@ -541,7 +551,7 @@ class PlayState extends MusicBeatState
 			gf.scrollFactor.set(0.95, 0.95);
 		}
 		else
-			gf.doCrap(0,0,'nothing');
+			gf.doCrap(0, 0, 'nothing');
 
 		// dad = new Character(100, 100, SONG.player2);
 		dad.doCrap(100, 100, SONG.player2);
@@ -637,7 +647,6 @@ class PlayState extends MusicBeatState
 				cloneTwo.alpha = 0;
 				cloneOne.animation.addByPrefix('clone', 'Clone', 24, false);
 				cloneTwo.animation.addByPrefix('clone', 'Clone', 24, false);
-
 			}
 			else
 			{
@@ -998,7 +1007,8 @@ class PlayState extends MusicBeatState
 		gramlan.animation.addByIndices('hold', 'HP Gremlin ANIMATION', [25, 26, 27, 28], "", 24);
 		gramlan.animation.addByIndices('release', 'HP Gremlin ANIMATION', [29, 30, 31, 32, 33], "", 24, false);
 
-		gramlan.antialiasing = true;
+		if (!Main.ultraLow)
+			gramlan.antialiasing = true;
 
 		add(gramlan);
 
@@ -1203,182 +1213,182 @@ class PlayState extends MusicBeatState
 	{
 		var done:Bool = false;
 
-			trace('starting cutscene');
+		trace('starting cutscene');
 
-			var black:FlxSprite = new FlxSprite(-300, -120).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
-			black.scrollFactor.set();
-			black.alpha = 0;
+		var black:FlxSprite = new FlxSprite(-300, -120).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
+		black.scrollFactor.set();
+		black.alpha = 0;
 
-			var animation:FlxSprite = new FlxSprite(200,300); // create the fuckin thing
+		var animation:FlxSprite = new FlxSprite(200, 300); // create the fuckin thing
 
-			animation.frames = Paths.getSparrowAtlas('trickman','clown'); // add animation from sparrow
-			animation.antialiasing = true;
-			animation.animation.addByPrefix('cut1','Cutscene 1', 24, false);
-			animation.animation.addByPrefix('cut2','Cutscene 2', 24, false);
-			animation.animation.addByPrefix('cut3','Cutscene 3', 24, false);
-			animation.animation.addByPrefix('cut4','Cutscene 4', 24, false);
-			animation.animation.addByPrefix('pillar','Pillar Beam Tricky', 24, false);
+		animation.frames = Paths.getSparrowAtlas('trickman', 'clown'); // add animation from sparrow
+		animation.antialiasing = true;
+		animation.animation.addByPrefix('cut1', 'Cutscene 1', 24, false);
+		animation.animation.addByPrefix('cut2', 'Cutscene 2', 24, false);
+		animation.animation.addByPrefix('cut3', 'Cutscene 3', 24, false);
+		animation.animation.addByPrefix('cut4', 'Cutscene 4', 24, false);
+		animation.animation.addByPrefix('pillar', 'Pillar Beam Tricky', 24, false);
 
-			animation.setGraphicSize(Std.int(animation.width * 2));
-			animation.updateHitbox();
+		animation.setGraphicSize(Std.int(animation.width * 2));
+		animation.updateHitbox();
 
-			animation.setGraphicSize(Std.int(animation.width * 1.5));
+		animation.setGraphicSize(Std.int(animation.width * 1.5));
 
-			animation.alpha = 0;
+		animation.alpha = 0;
 
-			camFollow.setPosition(dad.getMidpoint().x + 300, boyfriend.getMidpoint().y - 200);
+		camFollow.setPosition(dad.getMidpoint().x + 300, boyfriend.getMidpoint().y - 200);
 
-			inCutscene = true;
-			startedCountdown = false;
-			generatedMusic = false;
-			canPause = false;
+		inCutscene = true;
+		startedCountdown = false;
+		generatedMusic = false;
+		canPause = false;
 
-			FlxG.sound.music.volume = 0;
-			vocals.volume = 0;
+		FlxG.sound.music.volume = 0;
+		vocals.volume = 0;
 
-			var sounders:FlxSound = new FlxSound().loadEmbedded(Paths.sound('honkers','clown'));
-			var energy:FlxSound = new FlxSound().loadEmbedded(Paths.sound('energy shot','clown'));
-			var roar:FlxSound = new FlxSound().loadEmbedded(Paths.sound('sound_clown_roar','clown'));
-			var pillar:FlxSound = new FlxSound().loadEmbedded(Paths.sound('firepillar','clown'));
+		var sounders:FlxSound = new FlxSound().loadEmbedded(Paths.sound('honkers', 'clown'));
+		var energy:FlxSound = new FlxSound().loadEmbedded(Paths.sound('energy shot', 'clown'));
+		var roar:FlxSound = new FlxSound().loadEmbedded(Paths.sound('sound_clown_roar', 'clown'));
+		var pillar:FlxSound = new FlxSound().loadEmbedded(Paths.sound('firepillar', 'clown'));
 
-			var fade:FlxSprite = new FlxSprite(-300, -120).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.fromRGB(19, 0, 0));
-			fade.scrollFactor.set();
-			fade.alpha = 0;
+		var fade:FlxSprite = new FlxSprite(-300, -120).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.fromRGB(19, 0, 0));
+		fade.scrollFactor.set();
+		fade.alpha = 0;
 
-			var textFadeOut:FlxText = new FlxText(300,FlxG.height * 0.5,0,"TO BE CONTINUED");
-			textFadeOut.setFormat("Impact", 128, FlxColor.RED);
+		var textFadeOut:FlxText = new FlxText(300, FlxG.height * 0.5, 0, "TO BE CONTINUED");
+		textFadeOut.setFormat("Impact", 128, FlxColor.RED);
 
-			textFadeOut.alpha = 0;
+		textFadeOut.alpha = 0;
 
-			add(animation);
+		add(animation);
 
-			add(black);
+		add(black);
 
-			add(textFadeOut);
+		add(textFadeOut);
 
-			add(fade);
+		add(fade);
 
-			var startFading:Bool = false;
-			var varNumbaTwo:Bool = false;
-			var fadeDone:Bool = false;
+		var startFading:Bool = false;
+		var varNumbaTwo:Bool = false;
+		var fadeDone:Bool = false;
 
-			sounders.fadeIn(30);
+		sounders.fadeIn(30);
 
-			new FlxTimer().start(0.01, function(tmr:FlxTimer)
-				{
-					if (fade.alpha != 1 && !varNumbaTwo)
-					{
-						camHUD.alpha -= 0.1;
-						fade.alpha += 0.1;
-						if (fade.alpha == 1)
-						{
-							// THIS IS WHERE WE LOAD SHIT UN-NOTICED
-							varNumbaTwo = true;
-
-							animation.alpha = 1;
-							
-							dad.alpha = 0;
-						}
-						tmr.reset(0.1);
-					}
-					else
-					{
-						fade.alpha -= 0.1;
-						if (fade.alpha <= 0.5)
-							fadeDone = true;
-						tmr.reset(0.1);
-					}
-				});
-
-			var roarPlayed:Bool = false;
-
-			new FlxTimer().start(0.01, function(tmr:FlxTimer)
+		new FlxTimer().start(0.01, function(tmr:FlxTimer)
+		{
+			if (fade.alpha != 1 && !varNumbaTwo)
 			{
-				if (!fadeDone)
-					tmr.reset(0.1)
-				else
+				camHUD.alpha -= 0.1;
+				fade.alpha += 0.1;
+				if (fade.alpha == 1)
 				{
-					if (animation.animation == null || animation.animation.name == null)
-					{
-						trace('playin cut cuz its funny lol!!!');
-						animation.animation.play("cut1");
-						resetSpookyText = false;
-						createSpookyText(cutsceneText[1], 260, FlxG.height * 0.9);
-					}
+					// THIS IS WHERE WE LOAD SHIT UN-NOTICED
+					varNumbaTwo = true;
 
-					if (!animation.animation.finished)
-					{
-						tmr.reset(0.1);
-						trace(animation.animation.name + ' - FI ' + animation.animation.frameIndex);
+					animation.alpha = 1;
 
-						switch(animation.animation.frameIndex)
-						{
-							case 104:
-								if (animation.animation.name == 'cut1')
-									resetSpookyTextManual();
-						}
+					dad.alpha = 0;
+				}
+				tmr.reset(0.1);
+			}
+			else
+			{
+				fade.alpha -= 0.1;
+				if (fade.alpha <= 0.5)
+					fadeDone = true;
+				tmr.reset(0.1);
+			}
+		});
 
-						if (animation.animation.name == 'pillar')
-						{
-							if (animation.animation.frameIndex >= 85) // why is this not in the switch case above? idk cry about it
-								startFading = true;
-							FlxG.camera.shake(0.05);
-						}
-					}
-					else
+		var roarPlayed:Bool = false;
+
+		new FlxTimer().start(0.01, function(tmr:FlxTimer)
+		{
+			if (!fadeDone)
+				tmr.reset(0.1)
+			else
+			{
+				if (animation.animation == null || animation.animation.name == null)
+				{
+					trace('playin cut cuz its funny lol!!!');
+					animation.animation.play("cut1");
+					resetSpookyText = false;
+					createSpookyText(cutsceneText[1], 260, FlxG.height * 0.9);
+				}
+
+				if (!animation.animation.finished)
+				{
+					tmr.reset(0.1);
+					trace(animation.animation.name + ' - FI ' + animation.animation.frameIndex);
+
+					switch (animation.animation.frameIndex)
 					{
-						trace('completed ' + animation.animation.name);
-						resetSpookyTextManual();
-						switch(animation.animation.name)
-						{
-							case 'cut1':
-								animation.animation.play('cut2');
-							case 'cut2':
-								animation.animation.play('cut3');
-								energy.play();
-							case 'cut3':
-								animation.animation.play('cut4');
-								resetSpookyText = false;
-								createSpookyText(cutsceneText[2], 260, FlxG.height * 0.9);
-								animation.x -= 100;
-							case 'cut4':
+						case 104:
+							if (animation.animation.name == 'cut1')
 								resetSpookyTextManual();
-								sounders.fadeOut();
-								pillar.fadeIn(4);
-								animation.animation.play('pillar');
-								animation.y -= 670;
-								animation.x -= 100;
-						}
-						tmr.reset(0.1);
 					}
 
-					if (startFading)
+					if (animation.animation.name == 'pillar')
 					{
-						sounders.fadeOut();
-						trace('do the fade out and the text');
-						if (black.alpha != 1)
-						{
-							tmr.reset(0.1);
-							black.alpha += 0.02;
-
-							if (black.alpha >= 0.7 && !roarPlayed)
-							{
-								roar.play();
-								roarPlayed = true;
-							}
-						}
-						else if (done)
-						{
-							endSong();
-							FlxG.camera.stopFX();
-						}
-						else
-						{
-							done = true;
-							tmr.reset(5);
-						}
+						if (animation.animation.frameIndex >= 85) // why is this not in the switch case above? idk cry about it
+							startFading = true;
+						FlxG.camera.shake(0.05);
 					}
 				}
+				else
+				{
+					trace('completed ' + animation.animation.name);
+					resetSpookyTextManual();
+					switch (animation.animation.name)
+					{
+						case 'cut1':
+							animation.animation.play('cut2');
+						case 'cut2':
+							animation.animation.play('cut3');
+							energy.play();
+						case 'cut3':
+							animation.animation.play('cut4');
+							resetSpookyText = false;
+							createSpookyText(cutsceneText[2], 260, FlxG.height * 0.9);
+							animation.x -= 100;
+						case 'cut4':
+							resetSpookyTextManual();
+							sounders.fadeOut();
+							pillar.fadeIn(4);
+							animation.animation.play('pillar');
+							animation.y -= 670;
+							animation.x -= 100;
+					}
+					tmr.reset(0.1);
+				}
+
+				if (startFading)
+				{
+					sounders.fadeOut();
+					trace('do the fade out and the text');
+					if (black.alpha != 1)
+					{
+						tmr.reset(0.1);
+						black.alpha += 0.02;
+
+						if (black.alpha >= 0.7 && !roarPlayed)
+						{
+							roar.play();
+							roarPlayed = true;
+						}
+					}
+					else if (done)
+					{
+						endSong();
+						FlxG.camera.stopFX();
+					}
+					else
+					{
+						done = true;
+						tmr.reset(5);
+					}
+				}
+			}
 		});
 	}
 
@@ -1416,33 +1426,33 @@ class PlayState extends MusicBeatState
 		red.scrollFactor.set();
 		red.alpha = 1;
 		inCutscene = true;
-		//camFollow.setPosition(bf.getMidpoint().x + 80, bf.getMidpoint().y + 200);
+		// camFollow.setPosition(bf.getMidpoint().x + 80, bf.getMidpoint().y + 200);
 		dad.alpha = 0;
 		gf.alpha = 0;
 		remove(boyfriend);
-		var nevada:FlxSprite = new FlxSprite(260,FlxG.height * 0.7);
-		nevada.frames = Paths.getSparrowAtlas('somewhere','clown'); // add animation from sparrow
-		nevada.setGraphicSize(Std.int(nevada.width*4));
+		var nevada:FlxSprite = new FlxSprite(260, FlxG.height * 0.7);
+		nevada.frames = Paths.getSparrowAtlas('somewhere', 'clown'); // add animation from sparrow
+		nevada.setGraphicSize(Std.int(nevada.width * 4));
 		nevada.updateHitbox();
 		nevada.antialiasing = true;
 		nevada.animation.addByPrefix('nevada', 'somewhere idfk', 24, false);
-		var animation:FlxSprite = new FlxSprite(-50,200); // create the fuckin thing
-		animation.frames = Paths.getSparrowAtlas('intro','clown'); // add animation from sparrow
-		animation.setGraphicSize(Std.int(animation.width*2));
+		var animation:FlxSprite = new FlxSprite(-50, 200); // create the fuckin thing
+		animation.frames = Paths.getSparrowAtlas('intro', 'clown'); // add animation from sparrow
+		animation.setGraphicSize(Std.int(animation.width * 2));
 		animation.updateHitbox();
 		animation.antialiasing = true;
-		animation.animation.addByPrefix('fuckyou','Symbol', 24, false);
+		animation.animation.addByPrefix('fuckyou', 'Symbol', 24, false);
 		animation.setGraphicSize(Std.int(animation.width * 1.2));
 		nevada.setGraphicSize(Std.int(nevada.width * 0.5));
 		add(animation); // add it to the scene
 
 		// sounds
 
-		var ground:FlxSound = new FlxSound().loadEmbedded(Paths.sound('ground','clown'));
-		var wind:FlxSound = new FlxSound().loadEmbedded(Paths.sound('wind','clown'));
-		var cloth:FlxSound = new FlxSound().loadEmbedded(Paths.sound('cloth','clown'));
-		var metal:FlxSound = new FlxSound().loadEmbedded(Paths.sound('metal','clown'));
-		var buildUp:FlxSound = new FlxSound().loadEmbedded(Paths.sound('trickyIsTriggered','clown'));
+		var ground:FlxSound = new FlxSound().loadEmbedded(Paths.sound('ground', 'clown'));
+		var wind:FlxSound = new FlxSound().loadEmbedded(Paths.sound('wind', 'clown'));
+		var cloth:FlxSound = new FlxSound().loadEmbedded(Paths.sound('cloth', 'clown'));
+		var metal:FlxSound = new FlxSound().loadEmbedded(Paths.sound('metal', 'clown'));
+		var buildUp:FlxSound = new FlxSound().loadEmbedded(Paths.sound('trickyIsTriggered', 'clown'));
 
 		camHUD.visible = false;
 
@@ -1460,176 +1470,175 @@ class PlayState extends MusicBeatState
 		// trans.animation.pause();
 
 		new FlxTimer().start(0.01, function(tmr:FlxTimer)
-			{
+		{
 			if (!wat)
-				{
-					tmr.reset(1.5);
-					wat = true;
-				}
-				else
-				{
+			{
+				tmr.reset(1.5);
+				wat = true;
+			}
+			else
+			{
 				// if (wat && trans.animation.frameIndex == 18)
 				// {
 				// 	trans.animation.resume();
 				// 	trace('playing animation...');
 				// }
-			//if (trans.animation.finished)
-			if (true)
-			{
-			trace('animation done lol');
-			new FlxTimer().start(0.01, function(tmr:FlxTimer)
-			{
-
-					if (boyfriend.animation.finished && !bfScared)
-						boyfriend.animation.play('idle');
-					else if (boyfriend.animation.finished)
-						boyfriend.animation.play('scared');
-					if (nevada.animation.curAnim == null)
+				// if (trans.animation.finished)
+				if (true)
+				{
+					trace('animation done lol');
+					new FlxTimer().start(0.01, function(tmr:FlxTimer)
 					{
-						trace('NEVADA | ' + nevada);
-						nevada.animation.play('nevada');
-					}
-					if (!nevada.animation.finished && nevada.animation.curAnim.name == 'nevada')
-					{
-						if (nevada.animation.frameIndex >= 41 && red.alpha != 0)
+						if (boyfriend.animation.finished && !bfScared)
+							boyfriend.animation.play('idle');
+						else if (boyfriend.animation.finished)
+							boyfriend.animation.play('scared');
+						if (nevada.animation.curAnim == null)
 						{
-							trace(red.alpha);
-							red.alpha -= 0.1;
+							trace('NEVADA | ' + nevada);
+							nevada.animation.play('nevada');
 						}
-						if (nevada.animation.frameIndex == 34)
-							wind.fadeIn();
-						tmr.reset(0.1);
-					}
-					if (animation.animation.curAnim == null && red.alpha == 0)
-					{
-						remove(red);
-						trace('play tricky');
-						animation.animation.play('fuckyou', false, false, 40);
-					}
-					if (!animation.animation.finished && animation.animation.curAnim.name == 'fuckyou' && red.alpha == 0 && !faded)
-					{
-						trace("animation loop");
-						tmr.reset(0.01);
-
-						// animation code is bad I hate this
-						// :(
-
-						switch(animation.animation.frameIndex) // THESE ARE THE SOUNDS NOT THE ACTUAL CAMERA MOVEMENT!!!!
+						if (!nevada.animation.finished && nevada.animation.curAnim.name == 'nevada')
 						{
-							case 73:
-								ground.play();
-							case 84:
-								metal.play();
-							case 170:
-								if (!playonce)
-								{
-									resetSpookyText = false;
-									createSpookyText(cutsceneText[0], 260, FlxG.height * 0.9, 64);
-									playonce = true;
-								}
-								cloth.play();
-							case 192:
-								resetSpookyTextManual();
-								if (FlxG.save.data.perfStatic && tstatic.alpha != 0)
-									manuallymanuallyresetspookytextmanual();
-								buildUp.fadeIn();
-							case 219:
-								trace('reset thingy');
-								buildUp.fadeOut();
+							if (nevada.animation.frameIndex >= 41 && red.alpha != 0)
+							{
+								trace(red.alpha);
+								red.alpha -= 0.1;
+							}
+							if (nevada.animation.frameIndex == 34)
+								wind.fadeIn();
+							tmr.reset(0.1);
 						}
-
-						// im sorry for making this code.
-						// TODO: CLEAN THIS FUCKING UP (switch case it or smth)
-
-						if (animation.animation.frameIndex == 190)
-							bfScared = true;
-
-						if (animation.animation.frameIndex >= 115 && animation.animation.frameIndex < 200)
+						if (animation.animation.curAnim == null && red.alpha == 0)
 						{
-							camFollow.setPosition(dad.getMidpoint().x + 150, boyfriend.getMidpoint().y + 50);
-							if (FlxG.camera.zoom < 1.1)
-								FlxG.camera.zoom += 0.01;
-							else
-								FlxG.camera.zoom = 1.1;
+							remove(red);
+							trace('play tricky');
+							animation.animation.play('fuckyou', false, false, 40);
 						}
-						else if (animation.animation.frameIndex > 200 && FlxG.camera.zoom != defaultCamZoom)
+						if (!animation.animation.finished && animation.animation.curAnim.name == 'fuckyou' && red.alpha == 0 && !faded)
 						{
-							FlxG.camera.shake(0.01, 3);
-							if (FlxG.camera.zoom < defaultCamZoom || camFollow.y < boyfriend.getMidpoint().y - 50)
+							trace("animation loop");
+							tmr.reset(0.01);
+
+							// animation code is bad I hate this
+							// :(
+
+							switch (animation.animation.frameIndex) // THESE ARE THE SOUNDS NOT THE ACTUAL CAMERA MOVEMENT!!!!
+							{
+								case 73:
+									ground.play();
+								case 84:
+									metal.play();
+								case 170:
+									if (!playonce)
+									{
+										resetSpookyText = false;
+										createSpookyText(cutsceneText[0], 260, FlxG.height * 0.9, 64);
+										playonce = true;
+									}
+									cloth.play();
+								case 192:
+									resetSpookyTextManual();
+									if (FlxG.save.data.perfStatic && tstatic.alpha != 0)
+										manuallymanuallyresetspookytextmanual();
+									buildUp.fadeIn();
+								case 219:
+									trace('reset thingy');
+									buildUp.fadeOut();
+							}
+
+							// im sorry for making this code.
+							// TODO: CLEAN THIS FUCKING UP (switch case it or smth)
+
+							if (animation.animation.frameIndex == 190)
+								bfScared = true;
+
+							if (animation.animation.frameIndex >= 115 && animation.animation.frameIndex < 200)
+							{
+								camFollow.setPosition(dad.getMidpoint().x + 150, boyfriend.getMidpoint().y + 50);
+								if (FlxG.camera.zoom < 1.1)
+									FlxG.camera.zoom += 0.01;
+								else
+									FlxG.camera.zoom = 1.1;
+							}
+							else if (animation.animation.frameIndex > 200 && FlxG.camera.zoom != defaultCamZoom)
+							{
+								FlxG.camera.shake(0.01, 3);
+								if (FlxG.camera.zoom < defaultCamZoom || camFollow.y < boyfriend.getMidpoint().y - 50)
 								{
 									FlxG.camera.zoom = defaultCamZoom;
 									camFollow.y = boyfriend.getMidpoint().y - 50;
 								}
-							else
+								else
 								{
 									FlxG.camera.zoom -= 0.008;
 									camFollow.y = dad.getMidpoint().y -= 1;
 								}
-						}
-						if (animation.animation.frameIndex >= 235)
-							faded = true;
-					}
-					else if (red.alpha == 0 && faded)
-					{
-						trace('red gay');
-						// animation finished, start a dialog or start the countdown (should also probably fade into this, aka black fade in when the animation gets done and black fade out. Or just make the last frame tranisiton into the idle animation)
-						if (black.alpha != 1)
-						{
-							if (FlxG.save.data.perfStatic && tstatic.alpha != 0)
-								manuallymanuallyresetspookytextmanual();
-							black.alpha += 0.4;
-							tmr.reset(0.1);
-							trace('increase blackness lmao!!!');
-						}
-						else
-						{
-							if (black.alpha == 1 && black.visible)
-							{
-								black.visible = false;
-								black3.alpha = 1;
-								trace('transision ' + black.visible + ' ' + black3.alpha);
-								remove(animation);
-								dad.alpha = 1;
-								// why did I write this comment? I'm so confused
-								// shitty layering but ninja muffin can suck my dick like mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-								remove(red);
-								remove(black);
-								remove(black3);
-								dad.alpha = 1;
-								gf.alpha = 1;
-								add(black);
-								add(black3);
-								if (FlxG.save.data.perfStatic)
-								{
-									remove(tstatic);
-									add(tstatic);
-								}
-								tmr.reset(0.3);
-								FlxG.camera.stopFX();
-								camHUD.visible = true;
 							}
-							else if (black3.alpha != 0)
+							if (animation.animation.frameIndex >= 235)
+								faded = true;
+						}
+						else if (red.alpha == 0 && faded)
+						{
+							trace('red gay');
+							// animation finished, start a dialog or start the countdown (should also probably fade into this, aka black fade in when the animation gets done and black fade out. Or just make the last frame tranisiton into the idle animation)
+							if (black.alpha != 1)
 							{
-								black3.alpha -= 0.1;
-								tmr.reset(0.3);
-								trace('decrease blackness lmao!!!');
+								if (FlxG.save.data.perfStatic && tstatic.alpha != 0)
+									manuallymanuallyresetspookytextmanual();
+								black.alpha += 0.4;
+								tmr.reset(0.1);
+								trace('increase blackness lmao!!!');
 							}
 							else
 							{
-								wind.fadeOut();
-								startCountdown();
+								if (black.alpha == 1 && black.visible)
+								{
+									black.visible = false;
+									black3.alpha = 1;
+									trace('transision ' + black.visible + ' ' + black3.alpha);
+									remove(animation);
+									dad.alpha = 1;
+									// why did I write this comment? I'm so confused
+									// shitty layering but ninja muffin can suck my dick like mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+									remove(red);
+									remove(black);
+									remove(black3);
+									dad.alpha = 1;
+									gf.alpha = 1;
+									add(black);
+									add(black3);
+									if (FlxG.save.data.perfStatic)
+									{
+										remove(tstatic);
+										add(tstatic);
+									}
+									tmr.reset(0.3);
+									FlxG.camera.stopFX();
+									camHUD.visible = true;
+								}
+								else if (black3.alpha != 0)
+								{
+									black3.alpha -= 0.1;
+									tmr.reset(0.3);
+									trace('decrease blackness lmao!!!');
+								}
+								else
+								{
+									wind.fadeOut();
+									startCountdown();
+								}
 							}
 						}
+					});
 				}
-			});
-			}
-			else
-			{
-				// trace(trans.animation.frameIndex);
-				// if (trans.animation.frameIndex == 30)
-				// 	trans.alpha = 0;
-				tmr.reset(0.1);
-			}
+				else
+				{
+					// trace(trans.animation.frameIndex);
+					// if (trans.animation.frameIndex == 30)
+					// 	trans.alpha = 0;
+					tmr.reset(0.1);
+				}
 			}
 		});
 	}
@@ -1944,7 +1953,8 @@ class PlayState extends MusicBeatState
 					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
 					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-					babyArrow.antialiasing = true;
+					if (!Main.ultraLow)
+						babyArrow.antialiasing = true;
 					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
 					switch (Math.abs(i))
@@ -2485,9 +2495,6 @@ class PlayState extends MusicBeatState
 
 		if (!inCutscene)
 			keyShit();
-
-	
-		 
 	}
 
 	function createSpookyText(text:String, x:Float = -1111111111111, y:Float = -1111111111111, fontSize:Int = 128):Void
@@ -2544,7 +2551,7 @@ class PlayState extends MusicBeatState
 				#else
 				LoadingState.loadAndSwitchState(new AlmostMainMenuState());
 				#end
-				//LoadingState.loadAndSwitchState(new AlmostMainMenuState());
+				// LoadingState.loadAndSwitchState(new AlmostMainMenuState());
 
 				if (storyDifficulty == 2)
 					FlxG.save.data.beatenHard = true;
@@ -2584,6 +2591,8 @@ class PlayState extends MusicBeatState
 							LoadingState.loadAndSwitchState(new AlmostPlayState());
 					}
 				}
+				else
+					LoadingState.loadAndSwitchState(new AlmostPlayState());
 				#else
 				LoadingState.loadAndSwitchState(new AlmostPlayState());
 				#end
@@ -2722,9 +2731,11 @@ class PlayState extends MusicBeatState
 			if (!pixelOnly)
 			{
 				rating.setGraphicSize(Std.int(rating.width * 0.7));
-				rating.antialiasing = true;
+				if (!Main.ultraLow)
+					rating.antialiasing = true;
 				comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.7));
-				comboSpr.antialiasing = true;
+				if (!Main.ultraLow)
+					comboSpr.antialiasing = true;
 			}
 			else
 			{
@@ -2762,7 +2773,8 @@ class PlayState extends MusicBeatState
 
 				if (!pixelOnly)
 				{
-					numScore.antialiasing = true;
+					if (!Main.ultraLow)
+						numScore.antialiasing = true;
 					numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 				}
 				else
@@ -2966,14 +2978,15 @@ class PlayState extends MusicBeatState
 										if (!FlxG.save.data.perfSkull)
 										{
 											var smoke:FlxSprite = new FlxSprite(spr.x - spr.width + 15, spr.y - spr.height);
-											smoke.frames = Paths.getSparrowAtlas('Smoke','clown');
-											smoke.animation.addByPrefix('boom','smoke',24,false);
+											smoke.frames = Paths.getSparrowAtlas('Smoke', 'clown');
+											smoke.animation.addByPrefix('boom', 'smoke', 24, false);
 											smoke.animation.play('boom');
 											smoke.setGraphicSize(Std.int(smoke.width * 0.6));
 											smoke.cameras = [camHUD];
 											add(smoke);
-											smoke.animation.finishCallback = function(name:String) {
-												actuallyRemove(smoke);	
+											smoke.animation.finishCallback = function(name:String)
+											{
+												actuallyRemove(smoke);
 											}
 										}
 										else
