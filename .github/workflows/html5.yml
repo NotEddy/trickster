@@ -35,7 +35,6 @@ jobs:
           haxelib install hxcpp > /dev/null
           haxelib install lime
           haxelib install openfl
-          haxelib install newgrounds
           haxelib --never install flixel
           haxelib run lime setup flixel
           haxelib run lime setup
@@ -44,6 +43,7 @@ jobs:
           haxelib install flixel-addons
           haxelib install tjson
           haxelib install hxjsonast
+          haxelib install newgrounds
           haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
           haxelib install hscript
           haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
