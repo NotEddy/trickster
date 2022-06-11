@@ -36,6 +36,7 @@ jobs:
           haxelib install lime
           haxelib install openfl
           haxelib install newgrounds
+          haxelib install extension-webm
           haxelib --never install flixel
           haxelib run lime setup flixel
           haxelib run lime setup
